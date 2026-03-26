@@ -608,12 +608,6 @@ Enhanced Color System – "Luminous Precision"
             opacity: 0.7;
         }
 
-        .particle-word {
-            position: relative;
-            color: var(--accent);
-            display: inline-block;
-        }
-
         .brand-mark span {
             font-family: var(--font-display);
             text-transform: none;
@@ -3562,6 +3556,7 @@ Enhanced Color System – "Luminous Precision"
             cursor: pointer;
             font-size: 0.9rem;
         }
+
         .quote-form input[type="file"]::-webkit-file-upload-button {
             background: var(--accent);
             color: #fff;
@@ -3574,6 +3569,7 @@ Enhanced Color System – "Luminous Precision"
             font-weight: 500;
             transition: background 0.3s;
         }
+
         .quote-form input[type="file"]::-webkit-file-upload-button:hover {
             background: var(--accent-hover);
         }
@@ -4504,7 +4500,7 @@ Enhanced Color System – "Luminous Precision"
                 gap: 1.25rem;
             }
 
-            .quote-form > div {
+            .quote-form>div {
                 grid-column: span 1 !important;
             }
 
@@ -5109,10 +5105,8 @@ Enhanced Color System – "Luminous Precision"
         <div class="main-hero-content">
 
             <h1 class="main-hero-title scroll-reveal delay-2">
-                We Help <span class="particle-word">Global Brands</span> Scale Faster with <span class="particle-word">Zero-Error</span> Localization.
+                We Help <span>Global Brands</span> Scale Faster with <span>Zero-Error</span> Localization.
             </h1>
-            
-            <canvas id="morph-text-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5;"></canvas>
             <h2 class="main-hero-subtitle scroll-reveal delay-3">
                 We provide professional Localization, Translation, Annotation, Subtitling, and BPO Services in 300+
                 languages for clients across UK, Europe, USA, and Asia Pacific.
@@ -5151,8 +5145,8 @@ Enhanced Color System – "Luminous Precision"
                     provider based in India, supporting global clients with multilingual and outsourcing solutions.</p>
                 <div class="magnetic-el" data-strength="20">
                     <div class="control-pod">
-                        <a href="#command-footer" class="pod-primary"><span>Our Philosophy</span><svg viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2">
+                        <a href="#command-footer" class="pod-primary"><span>Our Philosophy</span><svg
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M5 12h14M12 5l7 7-7 7"></path>
                             </svg></a>
                     </div>
@@ -5306,8 +5300,9 @@ Enhanced Color System – "Luminous Precision"
             </div>
             <div class="method-cta scroll-reveal">
                 <div class="magnetic-el" data-strength="20">
-                    <div class="control-pod"><a href="#command-footer" class="pod-primary"><span>Start Your Project</span><svg
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <div class="control-pod"><a href="#command-footer" class="pod-primary"><span>Start Your
+                                Project</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path d="M5 12h14M12 5l7 7-7 7"></path>
                             </svg></a></div>
                 </div>
@@ -5689,11 +5684,15 @@ Enhanced Color System – "Luminous Precision"
             <div class="quote-form-wrapper scroll-reveal">
                 <h3>Request a Quote</h3>
                 <p>Fill the form and our team will contact you shortly.</p>
-                <form id="quote-form" class="quote-form" action="https://script.google.com/macros/s/AKfycbybigFws7_-K1JR7P-DLDB1H4Fy5iY4MNgA6VeqNKR_yAbXSOwiXSTFGW0SM6o_ya8ccA/exec" method="POST">
+                <form id="quote-form" class="quote-form"
+                    action="https://script.google.com/macros/s/AKfycbybigFws7_-K1JR7P-DLDB1H4Fy5iY4MNgA6VeqNKR_yAbXSOwiXSTFGW0SM6o_ya8ccA/exec"
+                    method="POST">
                     <div style="grid-column: span 2;"><label>Full Name *</label><input type="text" name="full_name"
                             placeholder="Your Name" required></div>
-                    <div><label>Email Address *</label><input type="email" name="email" placeholder="work@email.com" required></div>
-                    <div><label>Phone / WhatsApp</label><input type="tel" name="phone" placeholder="+1 234 567 8900"></div>
+                    <div><label>Email Address *</label><input type="email" name="email" placeholder="work@email.com"
+                            required></div>
+                    <div><label>Phone / WhatsApp</label><input type="tel" name="phone" placeholder="+1 234 567 8900">
+                    </div>
                     <div style="grid-column: span 2;"><label>Service Required *</label><select name="service" required>
                             <option value="">Select Service</option>
                             <option value="translation">Translation & Localization</option>
@@ -5707,7 +5706,9 @@ Enhanced Color System – "Luminous Precision"
                     <div style="grid-column: 1 / -1;"><label>Project Details / Languages</label>
                         <textarea name="details" placeholder="Tell us about your project..." required></textarea>
                     </div>
-                    <div id="form-status" style="grid-column: 1 / -1; margin-top: 1rem; padding: 1rem; border-radius: 8px; display: none; text-align: center; font-weight: 500;"></div>
+                    <div id="form-status"
+                        style="grid-column: 1 / -1; margin-top: 1rem; padding: 1rem; border-radius: 8px; display: none; text-align: center; font-weight: 500;">
+                    </div>
                     <div style="grid-column: 1 / -1; margin-top: 1rem; text-align: center;">
                         <button type="submit" class="submit-btn" id="submit-btn">Get Started Now</button>
                     </div>
@@ -6189,9 +6190,9 @@ Enhanced Color System – "Luminous Precision"
                         // If user hasn't put the Google Script ID yet, allow standard behavior or alert
                         if (action.includes('YOUR_ID')) return;
                     }
-                    
+
                     e.preventDefault();
-                    
+
                     submitBtn.disabled = true;
                     submitBtn.textContent = 'Sending...';
                     formStatus.style.display = 'block';
@@ -6239,7 +6240,7 @@ Enhanced Color System – "Luminous Precision"
 
                     if (file) {
                         const reader = new FileReader();
-                        reader.onload = function() {
+                        reader.onload = function () {
                             payload.fileData = reader.result.split(',')[1];
                             payload.fileName = file.name;
                             payload.fileType = file.type;
@@ -6251,132 +6252,6 @@ Enhanced Color System – "Luminous Precision"
                     }
                 });
             }
-
-            // 23. TARGETED PARTICLE TEXT ENGINE
-            (function() {
-                const canvas = document.getElementById('morph-text-canvas');
-                if (!canvas) return;
-                const ctx = canvas.getContext('2d', { willReadFrequently: true });
-
-                const targetSpans = document.querySelectorAll('.particle-word');
-                let particles = [];
-                let animationActive = false;
-
-                function resize() {
-                    const hero = document.querySelector('.main-hero');
-                    canvas.width = hero.offsetWidth;
-                    canvas.height = hero.offsetHeight;
-                }
-
-                window.addEventListener('resize', resize);
-                resize();
-
-                class Particle {
-                    constructor(x, y, tx, ty) {
-                        this.x = x;
-                        this.y = y;
-                        this.tx = tx;
-                        this.ty = ty;
-                        this.originX = tx;
-                        this.originY = ty;
-                        this.size = Math.random() * 2 + 1;
-                        this.friction = 0.95;
-                        this.ease = 0.1;
-                        this.vx = 0;
-                        this.vy = 0;
-                        this.color = `hsl(${Math.random() * 20 + 240}, 80%, 70%)`;
-                    }
-
-                    update(mx, my) {
-                        const dx = mx - this.x;
-                        const dy = my - this.y;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-                        const angle = Math.atan2(dy, dx);
-                        
-                        if (dist < 100) {
-                            const force = (100 - dist) / 100;
-                            this.vx -= Math.cos(angle) * force * 5;
-                            this.vy -= Math.sin(angle) * force * 5;
-                        }
-
-                        this.vx += (this.tx - this.x) * this.ease;
-                        this.vy += (this.ty - this.y) * this.ease;
-                        this.vx *= this.friction;
-                        this.vy *= this.friction;
-                        this.x += this.vx;
-                        this.y += this.vy;
-                    }
-
-                    draw() {
-                        ctx.fillStyle = this.color;
-                        ctx.beginPath();
-                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                        ctx.fill();
-                    }
-                }
-
-                function initParticles() {
-                    particles = [];
-                    targetSpans.forEach(span => {
-                        const rect = span.getBoundingClientRect();
-                        const heroRect = document.querySelector('.main-hero').getBoundingClientRect();
-                        const x = rect.left - heroRect.left;
-                        const y = rect.top - heroRect.top;
-                        
-                        // Capture text pixels
-                        const tempCanvas = document.createElement('canvas');
-                        const tCtx = tempCanvas.getContext('2d', { willReadFrequently: true });
-                        tempCanvas.width = rect.width;
-                        tempCanvas.height = rect.height;
-                        
-                        tCtx.fillStyle = 'white';
-                        tCtx.font = window.getComputedStyle(span).font;
-                        tCtx.textBaseline = 'top';
-                        tCtx.fillText(span.innerText, 0, 0);
-
-                        const imageData = tCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height).data;
-                        
-                        for (let py = 0; py < tempCanvas.height; py += 3) {
-                            for (let px = 0; px < tempCanvas.width; px += 3) {
-                                const index = (py * tempCanvas.width + px) * 4;
-                                if (imageData[index + 3] > 128) {
-                                    particles.push(new Particle(
-                                        x + px + (Math.random() - 0.5) * 50,
-                                        y + py + (Math.random() - 0.5) * 50,
-                                        x + px,
-                                        y + py
-                                    ));
-                                }
-                            }
-                        }
-                        // Make text transparent to show particles
-                        span.style.color = 'transparent';
-                    });
-                }
-
-                const mouse = { x: -1000, y: -1000 };
-                window.addEventListener('mousemove', (e) => {
-                    const heroRect = document.querySelector('.main-hero').getBoundingClientRect();
-                    mouse.x = e.clientX - heroRect.left;
-                    mouse.y = e.clientY - heroRect.top;
-                });
-
-                function animate() {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    particles.forEach(p => {
-                        p.update(mouse.x, mouse.y);
-                        p.draw();
-                    });
-                    requestAnimationFrame(animate);
-                }
-
-                document.fonts.ready.then(() => {
-                    setTimeout(() => {
-                        initParticles();
-                        animate();
-                    }, 1000);
-                });
-            })();
 
         })();
     </script>
