@@ -1,0 +1,279 @@
+<svg viewBox="0 0 800 600" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <style>
+            /* Main Keyframes: 8-second Infinite Loop */
+            
+            /* Phase 3 & 5: Snap Connection and Reset Disconnect */
+            /* UPGRADE 4: Advanced Physics (Custom Spring Easing for satisfying snap) */
+            @keyframes snap {
+                0%, 40% {
+                    transform: translate(var(--out-x), var(--out-y));
+                    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+                }
+                50%, 80% {
+                    transform: translate(var(--in-x), var(--in-y));
+                    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                }
+                95%, 100% {
+                    transform: translate(var(--out-x), var(--out-y));
+                }
+            }
+
+            /* Phase 1: Floating Disconnect */
+            @keyframes float {
+                0% { transform: translateY(0px); animation-timing-function: ease-in-out; }
+                10% { transform: translateY(-12px); animation-timing-function: ease-in-out; }
+                20%, 100% { transform: translateY(0px); }
+            }
+
+            /* Phase 2: Translation 3D Flip */
+            /* UPGRADE 4: Advanced Physics applied to the 3D flip */
+            @keyframes flip {
+                0%, 20% { transform: rotateY(0deg); animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+                40%, 80% { transform: rotateY(180deg); animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+                95%, 100% { transform: rotateY(360deg); }
+            }
+
+            /* Phase 2 & 5: Color Transitions (Gray Layer Opacity) */
+            @keyframes fadeGray {
+                0%, 20% { opacity: 1; animation-timing-function: ease-in-out; }
+                40%, 80% { opacity: 0; animation-timing-function: ease-in-out; }
+                95%, 100% { opacity: 1; }
+            }
+
+            /* Text Fade during Flip */
+            @keyframes fadeText {
+                0%, 20% { opacity: 1; }
+                30%, 85% { opacity: 0; }
+                95%, 100% { opacity: 1; }
+            }
+
+            /* Phase 4: The Polish (Light Sweep) */
+            @keyframes sweep {
+                0%, 60% { transform: translate(-250px, 0) rotate(45deg); opacity: 0; }
+                61% { opacity: 1; }
+                75% { transform: translate(250px, 0) rotate(45deg); opacity: 1; }
+                76%, 100% { transform: translate(250px, 0) rotate(45deg); opacity: 0; }
+            }
+
+            /* UPGRADE 1: The "Cascade" Effect using var(--delay) */
+            .tile-group, .tile-floater, .tile-flipper, .gray-layer, .fade-text, .sweep-rect {
+                animation-duration: 8s;
+                animation-iteration-count: infinite;
+                animation-delay: var(--delay, 0s);
+                animation-fill-mode: both;
+            }
+
+            .tile-group {
+                animation-name: snap;
+                filter: drop-shadow(0px 18px 20px rgba(0, 0, 0, 0.25));
+            }
+            .tile-floater { animation-name: float; }
+            .tile-flipper {
+                animation-name: flip;
+                transform-origin: 0 0;
+            }
+            .gray-layer { animation-name: fadeGray; }
+            .fade-text { animation-name: fadeText; }
+            .sweep-rect { animation-name: sweep; }
+
+            /* Typography styling */
+            .tile-text {
+                font-family: 'Segoe UI', -apple-system, Roboto, Helvetica, Arial, sans-serif;
+                font-size: 38px;
+                font-weight: 800;
+                fill: #ffffff;
+                text-anchor: middle;
+                dominant-baseline: central;
+                filter: drop-shadow(0px 3px 5px rgba(0,0,0,0.4));
+            }
+        </style>
+
+        <!-- Base Isometric 3D Polygon Faces -->
+        <!-- Width: 160px, Height: 92px, Depth: 20px -->
+        <polygon id="face-top" points="0,-46 80,0 0,46 -80,0" />
+        <polygon id="face-left" points="-80,0 0,46 0,66 -80,20" />
+        <polygon id="face-right" points="0,46 80,0 80,20 0,66" />
+
+        <!-- Clip Path for the glossy sweep -->
+        <clipPath id="clip-top">
+            <use href="#face-top" />
+        </clipPath>
+
+        <!-- Glossy Sweep Gradient -->
+        <linearGradient id="sweep-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="rgba(255, 255, 255, 0)" />
+            <stop offset="50%" stop-color="rgba(255, 255, 255, 0.85)" />
+            <stop offset="100%" stop-color="rgba(255, 255, 255, 0)" />
+        </linearGradient>
+
+        <!-- ==========================================
+             UPGRADE 3: Glassmorphism Gradients
+             ========================================== -->
+        <!-- Tile 1 (Mint Green) -->
+        <linearGradient id="t1-top" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#84f5ce"/><stop offset="100%" stop-color="#46cca0"/></linearGradient>
+        <linearGradient id="t1-left" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#5ce1b6"/><stop offset="100%" stop-color="#3aa381"/></linearGradient>
+        <linearGradient id="t1-right" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#46b894"/><stop offset="100%" stop-color="#218a68"/></linearGradient>
+
+        <!-- Tile 2 (Light Blue) -->
+        <linearGradient id="t2-top" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#9bf0ff"/><stop offset="100%" stop-color="#5baedb"/></linearGradient>
+        <linearGradient id="t2-left" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#73cbf5"/><stop offset="100%" stop-color="#479bcc"/></linearGradient>
+        <linearGradient id="t2-right" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#5ab0d8"/><stop offset="100%" stop-color="#3686ab"/></linearGradient>
+
+        <!-- Tile 3 (Dark Blue) -->
+        <linearGradient id="t3-top" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#43a8eb"/><stop offset="100%" stop-color="#216a9c"/></linearGradient>
+        <linearGradient id="t3-left" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#297fb8"/><stop offset="100%" stop-color="#19557d"/></linearGradient>
+        <linearGradient id="t3-right" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1f6491"/><stop offset="100%" stop-color="#0e3752"/></linearGradient>
+
+        <!-- Tile 4 (Forest Green) -->
+        <linearGradient id="t4-top" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#40e39b"/><stop offset="100%" stop-color="#1c9962"/></linearGradient>
+        <linearGradient id="t4-left" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#25b878"/><stop offset="100%" stop-color="#15754c"/></linearGradient>
+        <linearGradient id="t4-right" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1c8c5c"/><stop offset="100%" stop-color="#0e5235"/></linearGradient>
+
+        <!-- Neutral Sleek Gray Layer -->
+        <linearGradient id="tg-top" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#d4e0e1"/><stop offset="100%" stop-color="#9eb0b3"/></linearGradient>
+        <linearGradient id="tg-left" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#a6b8b9"/><stop offset="100%" stop-color="#809192"/></linearGradient>
+        <linearGradient id="tg-right" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#90a1a2"/><stop offset="100%" stop-color="#6a7879"/></linearGradient>
+
+        <!-- UPGRADE 3: Reusable Bevel Template for Glass Lighting -->
+        <g id="glass-bevels" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Top back edge highlight (direct light) -->
+            <polyline points="-79,0 0,-45 79,0" stroke="rgba(255, 255, 255, 0.75)" stroke-width="2" />
+            <!-- Top front left edge highlight -->
+            <line x1="-79" y1="1" x2="0" y2="45" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1.5" />
+            <!-- Center vertical edge highlight -->
+            <line x1="0" y1="46" x2="0" y2="65" stroke="rgba(255, 255, 255, 0.5)" stroke-width="1.5" />
+            <!-- Top front right edge subtle shadow/sheen -->
+            <line x1="1" y1="45" x2="79" y2="1" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1.5" />
+        </g>
+    </defs>
+
+    <!-- Master Transform to center the "S" Logo -->
+    <g transform="translate(400, 275)">
+
+        <!-- ==============================
+             TILE 1: TOP (Mint Green)
+             Cascade Delay: 0s
+             ============================== -->
+        <g class="tile-group" style="--in-x: 40px; --in-y: -69px; --out-x: 80px; --out-y: -115px; --delay: 0s;">
+            <g class="tile-floater">
+                <g class="tile-flipper">
+                    <!-- Brand Colors Layer -->
+                    <use href="#face-left" fill="url(#t1-left)" />
+                    <use href="#face-right" fill="url(#t1-right)" />
+                    <use href="#face-top" fill="url(#t1-top)" />
+                    
+                    <!-- Neutral Gray Layer -->
+                    <g class="gray-layer">
+                        <use href="#face-left" fill="url(#tg-left)" />
+                        <use href="#face-right" fill="url(#tg-right)" />
+                        <use href="#face-top" fill="url(#tg-top)" />
+                    </g>
+
+                    <!-- Bevel / Lighting overlay -->
+                    <use href="#glass-bevels" />
+                    
+                    <!-- UPGRADE 2: Isometric Typography Layer -->
+                    <text class="tile-text fade-text" transform="skewX(-30deg) rotate(30deg)" x="0" y="2">A</text>
+                </g>
+                <g clip-path="url(#clip-top)">
+                    <rect class="sweep-rect" x="-50" y="-150" width="100" height="300" fill="url(#sweep-grad)" />
+                </g>
+            </g>
+        </g>
+
+        <!-- ==============================
+             TILE 2: MIDDLE LEFT (Light Blue)
+             Cascade Delay: 0.15s
+             ============================== -->
+        <g class="tile-group" style="--in-x: -40px; --in-y: -23px; --out-x: -80px; --out-y: -69px; --delay: 0.15s;">
+            <g class="tile-floater">
+                <g class="tile-flipper">
+                    <!-- Brand Colors Layer -->
+                    <use href="#face-left" fill="url(#t2-left)" />
+                    <use href="#face-right" fill="url(#t2-right)" />
+                    <use href="#face-top" fill="url(#t2-top)" />
+                    
+                    <!-- Neutral Gray Layer -->
+                    <g class="gray-layer">
+                        <use href="#face-left" fill="url(#tg-left)" />
+                        <use href="#face-right" fill="url(#tg-right)" />
+                        <use href="#face-top" fill="url(#tg-top)" />
+                    </g>
+
+                    <!-- Bevel / Lighting overlay -->
+                    <use href="#glass-bevels" />
+                    
+                    <!-- UPGRADE 2: Isometric Typography Layer -->
+                    <text class="tile-text fade-text" transform="skewX(-30deg) rotate(30deg)" x="0" y="2">文</text>
+                </g>
+                <g clip-path="url(#clip-top)">
+                    <rect class="sweep-rect" x="-50" y="-150" width="100" height="300" fill="url(#sweep-grad)" />
+                </g>
+            </g>
+        </g>
+
+        <!-- ==============================
+             TILE 3: MIDDLE RIGHT (Dark Blue)
+             Cascade Delay: 0.3s
+             ============================== -->
+        <g class="tile-group" style="--in-x: 40px; --in-y: 23px; --out-x: 80px; --out-y: 69px; --delay: 0.3s;">
+            <g class="tile-floater">
+                <g class="tile-flipper">
+                    <!-- Brand Colors Layer -->
+                    <use href="#face-left" fill="url(#t3-left)" />
+                    <use href="#face-right" fill="url(#t3-right)" />
+                    <use href="#face-top" fill="url(#t3-top)" />
+                    
+                    <!-- Neutral Gray Layer -->
+                    <g class="gray-layer">
+                        <use href="#face-left" fill="url(#tg-left)" />
+                        <use href="#face-right" fill="url(#tg-right)" />
+                        <use href="#face-top" fill="url(#tg-top)" />
+                    </g>
+
+                    <!-- Bevel / Lighting overlay -->
+                    <use href="#glass-bevels" />
+                    
+                    <!-- UPGRADE 2: Isometric Typography Layer -->
+                    <text class="tile-text fade-text" transform="skewX(-30deg) rotate(30deg)" x="0" y="2">Ω</text>
+                </g>
+                <g clip-path="url(#clip-top)">
+                    <rect class="sweep-rect" x="-50" y="-150" width="100" height="300" fill="url(#sweep-grad)" />
+                </g>
+            </g>
+        </g>
+
+        <!-- ==============================
+             TILE 4: BOTTOM (Forest Green)
+             Cascade Delay: 0.45s
+             ============================== -->
+        <g class="tile-group" style="--in-x: -40px; --in-y: 69px; --out-x: -80px; --out-y: 115px; --delay: 0.45s;">
+            <g class="tile-floater">
+                <g class="tile-flipper">
+                    <!-- Brand Colors Layer -->
+                    <use href="#face-left" fill="url(#t4-left)" />
+                    <use href="#face-right" fill="url(#t4-right)" />
+                    <use href="#face-top" fill="url(#t4-top)" />
+                    
+                    <!-- Neutral Gray Layer -->
+                    <g class="gray-layer">
+                        <use href="#face-left" fill="url(#tg-left)" />
+                        <use href="#face-right" fill="url(#tg-right)" />
+                        <use href="#face-top" fill="url(#tg-top)" />
+                    </g>
+
+                    <!-- Bevel / Lighting overlay -->
+                    <use href="#glass-bevels" />
+                    
+                    <!-- UPGRADE 2: Isometric Typography Layer -->
+                    <text class="tile-text fade-text" transform="skewX(-30deg) rotate(30deg)" x="0" y="2">ض</text>
+                </g>
+                <g clip-path="url(#clip-top)">
+                    <rect class="sweep-rect" x="-50" y="-150" width="100" height="300" fill="url(#sweep-grad)" />
+                </g>
+            </g>
+        </g>
+
+    </g>
+</svg>
