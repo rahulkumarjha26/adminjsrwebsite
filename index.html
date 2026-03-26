@@ -585,6 +585,9 @@ Enhanced Color System – "Luminous Precision"
         }
 
         .brand-mark {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             font-family: var(--font-body);
             font-weight: 700;
             font-size: 1.1rem;
@@ -592,6 +595,13 @@ Enhanced Color System – "Luminous Precision"
             text-transform: uppercase;
             color: var(--text-primary);
             transition: opacity 0.3s;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
         }
 
         .brand-mark:hover {
@@ -3506,7 +3516,8 @@ Enhanced Color System – "Luminous Precision"
         }
 
         .quote-form input,
-        .quote-form select {
+        .quote-form select,
+        .quote-form textarea {
             width: 100%;
             padding: 1rem;
             border-radius: 8px;
@@ -3516,17 +3527,24 @@ Enhanced Color System – "Luminous Precision"
             outline: none;
             font-family: var(--font-body);
             font-size: 0.95rem;
-            transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .quote-form textarea {
+            min-height: 120px;
+            resize: vertical;
         }
 
         .quote-form input:focus,
-        .quote-form select:focus {
+        .quote-form select:focus,
+        .quote-form textarea:focus {
             border-color: var(--accent);
             box-shadow: 0 0 0 3px var(--accent-glow);
             background: var(--bg-surface);
         }
 
-        .quote-form input::placeholder {
+        .quote-form input::placeholder,
+        .quote-form textarea::placeholder {
             color: var(--text-muted);
         }
 
@@ -3555,7 +3573,9 @@ Enhanced Color System – "Luminous Precision"
         }
 
         .quote-form .submit-btn {
-            padding: 1rem 3rem;
+            width: 100%;
+            max-width: 300px;
+            padding: 1.25rem;
             font-size: 1.1rem;
             cursor: pointer;
             background: var(--gradient-accent);
@@ -4475,7 +4495,15 @@ Enhanced Color System – "Luminous Precision"
 
             .quote-form {
                 grid-template-columns: 1fr;
-                gap: 1rem;
+                gap: 1.25rem;
+            }
+
+            .quote-form > div {
+                grid-column: span 1 !important;
+            }
+
+            .quote-form .submit-btn {
+                max-width: 100%;
             }
 
             .info-grid {
@@ -4948,7 +4976,10 @@ Enhanced Color System – "Luminous Precision"
 
     <!-- Navigation -->
     <nav class="main-nav" id="main-nav">
-        <a href="#" class="brand-mark">ADMIN <span>JSR</span></a>
+        <a href="#" class="brand-mark">
+            <img src="logo.png" alt="Admin JSR Logo" class="brand-logo">
+            <span>Admin JSR Consulting</span>
+        </a>
         <ul class="nav-links">
             <li><a href="#manifesto-section" class="nav-link">About</a></li>
             <li><a href="#vault-section" class="nav-link">Services</a></li>
@@ -5665,15 +5696,13 @@ Enhanced Color System – "Luminous Precision"
                     <div style="grid-column: 1 / -1;"><label>Upload File (Optional)</label>
                         <input type="file" name="file" class="file-v6">
                     </div>
-                    <div style="grid-column: 1 / -1;"><label>Project Details / Languages</label><textarea name="details"
-                            placeholder="Tell us about your project..."
-                            style="width: 100%; padding: 1rem; border-radius: 8px; border: 1.5px solid var(--border); background: var(--bg-elevated); color: var(--text-primary); font-family: var(--font-body); min-height: 120px; outline: none; transition: all 0.3s;" required></textarea>
+                    <div style="grid-column: 1 / -1;"><label>Project Details / Languages</label>
+                        <textarea name="details" placeholder="Tell us about your project..." required></textarea>
                     </div>
                     <div id="form-status" style="grid-column: 1 / -1; margin-top: 1rem; padding: 1rem; border-radius: 8px; display: none; text-align: center; font-weight: 500;"></div>
-                    <div style="grid-column: 1 / -1; margin-top: 2rem; text-align: center;"><button type="submit"
-                            class="submit-btn" id="submit-btn"
-                            style="width: 100%; max-width: 300px; padding: 1.25rem; font-size: 1.1rem;">Get Started
-                            Now</button></div>
+                    <div style="grid-column: 1 / -1; margin-top: 1rem; text-align: center;">
+                        <button type="submit" class="submit-btn" id="submit-btn">Get Started Now</button>
+                    </div>
                 </form>
             </div>
             <div class="action-deck" style="margin-bottom: 4rem;">
