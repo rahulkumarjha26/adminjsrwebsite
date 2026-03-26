@@ -608,6 +608,12 @@ Enhanced Color System – "Luminous Precision"
             opacity: 0.7;
         }
 
+        .particle-word {
+            position: relative;
+            color: var(--accent);
+            display: inline-block;
+        }
+
         .brand-mark span {
             font-family: var(--font-display);
             text-transform: none;
@@ -5095,13 +5101,18 @@ Enhanced Color System – "Luminous Precision"
     <!-- MAIN HERO SECTION -->
     <section id="main-hero-section" class="main-hero">
 
+        <div class="hero-decorative-blobs">
+            <div class="blob shape-1"></div>
+            <div class="blob shape-2"></div>
+            <div class="blob shape-3"></div>
+        </div>
         <div class="main-hero-content">
 
-            <h1 class="main-hero-title" style="opacity: 0; position: absolute; pointer-events: none;">
-                We Help Global Brands Scale Faster with Zero-Error Localization.
+            <h1 class="main-hero-title scroll-reveal delay-2">
+                We Help <span class="particle-word">Global Brands</span> Scale Faster with <span class="particle-word">Zero-Error</span> Localization.
             </h1>
             
-            <canvas id="morph-text-canvas" style="width: 100%; height: 400px; display: block; margin: 0 auto; cursor: none;"></canvas>
+            <canvas id="morph-text-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5;"></canvas>
             <h2 class="main-hero-subtitle scroll-reveal delay-3">
                 We provide professional Localization, Translation, Annotation, Subtitling, and BPO Services in 300+
                 languages for clients across UK, Europe, USA, and Asia Pacific.
@@ -6241,73 +6252,59 @@ Enhanced Color System – "Luminous Precision"
                 });
             }
 
-            // 23. MORPHING PARTICLE TEXT ENGINE
+            // 23. TARGETED PARTICLE TEXT ENGINE
             (function() {
                 const canvas = document.getElementById('morph-text-canvas');
                 if (!canvas) return;
                 const ctx = canvas.getContext('2d', { willReadFrequently: true });
 
-                const texts = [
-                    "Global Brands",
-                    "Marcas Globales",
-                    "Marques Mondiales",
-                    "グローバルブランド",
-                    "Weltmarken"
-                ];
-                
-                let currentTextIndex = 0;
+                const targetSpans = document.querySelectorAll('.particle-word');
                 let particles = [];
-                let targetCoords = [];
-                
-                canvas.width = 1200; 
-                canvas.height = 400;
+                let animationActive = false;
 
-                const mouse = { x: -1000, y: -1000, radius: 80 };
+                function resize() {
+                    const hero = document.querySelector('.main-hero');
+                    canvas.width = hero.offsetWidth;
+                    canvas.height = hero.offsetHeight;
+                }
 
-                canvas.addEventListener('mousemove', (e) => {
-                    const rect = canvas.getBoundingClientRect();
-                    const scaleX = canvas.width / rect.width;
-                    const scaleY = canvas.height / rect.height;
-                    mouse.x = (e.clientX - rect.left) * scaleX;
-                    mouse.y = (e.clientY - rect.top) * scaleY;
-                });
-
-                canvas.addEventListener('mouseleave', () => {
-                    mouse.x = -1000;
-                    mouse.y = -1000;
-                });
+                window.addEventListener('resize', resize);
+                resize();
 
                 class Particle {
-                    constructor(x, y) {
-                        this.x = Math.random() * canvas.width;
-                        this.y = Math.random() * canvas.height;
-                        this.tx = x;
-                        this.ty = y;
-                        this.size = 2.5;
-                        this.friction = Math.random() * 0.04 + 0.08;
-                        this.color = '#ffffff';
-                        this.hue = 250;
+                    constructor(x, y, tx, ty) {
+                        this.x = x;
+                        this.y = y;
+                        this.tx = tx;
+                        this.ty = ty;
+                        this.originX = tx;
+                        this.originY = ty;
+                        this.size = Math.random() * 2 + 1;
+                        this.friction = 0.95;
+                        this.ease = 0.1;
+                        this.vx = 0;
+                        this.vy = 0;
+                        this.color = `hsl(${Math.random() * 20 + 240}, 80%, 70%)`;
                     }
 
-                    update() {
-                        let dx = mouse.x - this.x;
-                        let dy = mouse.y - this.y;
-                        let dist = Math.sqrt(dx * dx + dy * dy);
-
-                        if (dist < mouse.radius) {
-                            const force = (mouse.radius - dist) / mouse.radius;
-                            this.x -= (dx / dist) * force * 15;
-                            this.y -= (dy / dist) * force * 15;
-                            this.hue = 30 + (force * 300); 
-                            this.color = `hsl(${this.hue}, 90%, 65%)`;
-                        } else {
-                            this.x += (this.tx - this.x) * this.friction;
-                            this.y += (this.ty - this.y) * this.friction;
-                            if(this.hue > 250 || this.hue < 240) {
-                                this.hue += (250 - this.hue) * 0.05;
-                                this.color = `hsl(${this.hue}, 80%, 70%)`;
-                            }
+                    update(mx, my) {
+                        const dx = mx - this.x;
+                        const dy = my - this.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        const angle = Math.atan2(dy, dx);
+                        
+                        if (dist < 100) {
+                            const force = (100 - dist) / 100;
+                            this.vx -= Math.cos(angle) * force * 5;
+                            this.vy -= Math.sin(angle) * force * 5;
                         }
+
+                        this.vx += (this.tx - this.x) * this.ease;
+                        this.vy += (this.ty - this.y) * this.ease;
+                        this.vx *= this.friction;
+                        this.vy *= this.friction;
+                        this.x += this.vx;
+                        this.y += this.vy;
                     }
 
                     draw() {
@@ -6318,60 +6315,66 @@ Enhanced Color System – "Luminous Precision"
                     }
                 }
 
-                function createTextCoords(text) {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    ctx.fillStyle = 'white';
-                    ctx.font = 'bold 110px "Bricolage Grotesque", sans-serif'; 
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+                function initParticles() {
+                    particles = [];
+                    targetSpans.forEach(span => {
+                        const rect = span.getBoundingClientRect();
+                        const heroRect = document.querySelector('.main-hero').getBoundingClientRect();
+                        const x = rect.left - heroRect.left;
+                        const y = rect.top - heroRect.top;
+                        
+                        // Capture text pixels
+                        const tempCanvas = document.createElement('canvas');
+                        const tCtx = tempCanvas.getContext('2d', { willReadFrequently: true });
+                        tempCanvas.width = rect.width;
+                        tempCanvas.height = rect.height;
+                        
+                        tCtx.fillStyle = 'white';
+                        tCtx.font = window.getComputedStyle(span).font;
+                        tCtx.textBaseline = 'top';
+                        tCtx.fillText(span.innerText, 0, 0);
 
-                    const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-                    targetCoords = [];
-
-                    for (let y = 0; y < canvas.height; y += 5) {
-                        for (let x = 0; x < canvas.width; x += 5) {
-                            const index = (y * canvas.width + x) * 4;
-                            const alpha = data[index + 3];
-                            if (alpha > 128) {
-                                targetCoords.push({ x, y });
+                        const imageData = tCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height).data;
+                        
+                        for (let py = 0; py < tempCanvas.height; py += 3) {
+                            for (let px = 0; px < tempCanvas.width; px += 3) {
+                                const index = (py * tempCanvas.width + px) * 4;
+                                if (imageData[index + 3] > 128) {
+                                    particles.push(new Particle(
+                                        x + px + (Math.random() - 0.5) * 50,
+                                        y + py + (Math.random() - 0.5) * 50,
+                                        x + px,
+                                        y + py
+                                    ));
+                                }
                             }
                         }
-                    }
-
-                    for (let i = 0; i < targetCoords.length; i++) {
-                        if (particles[i]) {
-                            particles[i].tx = targetCoords[i].x;
-                            particles[i].ty = targetCoords[i].y;
-                        } else {
-                            particles.push(new Particle(targetCoords[i].x, targetCoords[i].y));
-                        }
-                    }
-
-                    if (targetCoords.length < particles.length) {
-                        for (let i = targetCoords.length; i < particles.length; i++) {
-                            particles[i].tx = Math.random() * canvas.width;
-                            particles[i].ty = canvas.height + 100;
-                        }
-                    }
+                        // Make text transparent to show particles
+                        span.style.color = 'transparent';
+                    });
                 }
+
+                const mouse = { x: -1000, y: -1000 };
+                window.addEventListener('mousemove', (e) => {
+                    const heroRect = document.querySelector('.main-hero').getBoundingClientRect();
+                    mouse.x = e.clientX - heroRect.left;
+                    mouse.y = e.clientY - heroRect.top;
+                });
 
                 function animate() {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     particles.forEach(p => {
-                        p.update();
+                        p.update(mouse.x, mouse.y);
                         p.draw();
                     });
                     requestAnimationFrame(animate);
                 }
 
                 document.fonts.ready.then(() => {
-                    createTextCoords(texts[currentTextIndex]);
-                    animate();
-                    setInterval(() => {
-                        currentTextIndex = (currentTextIndex + 1) % texts.length;
-                        createTextCoords(texts[currentTextIndex]);
-                    }, 4000);
+                    setTimeout(() => {
+                        initParticles();
+                        animate();
+                    }, 1000);
                 });
             })();
 
