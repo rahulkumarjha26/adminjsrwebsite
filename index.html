@@ -6757,7 +6757,7 @@ Enhanced Color System – "Luminous Precision"
                         </div>
                     </div>
                     <div class="step-visual"><img
-                            src="images/methodology_step_1.png"
+                            src="images/methodology_step_1_brief.svg"
                             alt="Project onboarding meeting" class="step-img" loading="lazy"></div>
                     <div class="step-marker">01</div>
                 </div>
@@ -6773,7 +6773,7 @@ Enhanced Color System – "Luminous Precision"
                                 Calibration</span></div>
                     </div>
                     <div class="step-visual"><img
-                            src="images/methodology_step_2.png"
+                            src="images/methodology_step_2_linguist.svg"
                             alt="Expert linguist working" class="step-img" loading="lazy"></div>
                     <div class="step-marker">02</div>
                 </div>
@@ -6789,7 +6789,7 @@ Enhanced Color System – "Luminous Precision"
                                 Compliance</span></div>
                     </div>
                     <div class="step-visual"><img
-                            src="images/methodology_step_3.png"
+                            src="images/methodology_step_3_human.svg"
                             alt="Translation execution" class="step-img" loading="lazy"></div>
                     <div class="step-marker">03</div>
                 </div>
@@ -6805,7 +6805,7 @@ Enhanced Color System – "Luminous Precision"
                                 Audit</span><span class="deliverable-tag">PM Sign-off</span></div>
                     </div>
                     <div class="step-visual"><img
-                            src="images/methodology_step_4.png"
+                            src="images/methodology_step_4_self.svg"
                             alt="Quality review process" class="step-img" loading="lazy"></div>
                     <div class="step-marker">04</div>
                 </div>
@@ -9356,19 +9356,19 @@ Enhanced Color System – "Luminous Precision"
                     if (!img) return;
 
                     const tagImageMap = {
-                        "Project Brief": "images/methodology_step_1.png",
-                        "Glossary Setup": "images/methodology_step_1_glossary.png",
-                        "PM Assigned": "images/methodology_step_1_pm.png",
+                        "Project Brief": "images/methodology_step_1_brief.svg",
+                        "Glossary Setup": "images/methodology_step_1_glossary.svg",
+                        "PM Assigned": "images/methodology_step_1_pm.svg",
                         
-                        "Native Linguist": "images/methodology_step_2.png",
-                        "Domain Expert": "images/methodology_step_2_expert.png",
-                        "Cultural Calibration": "images/methodology_step_2_cultural.png",
+                        "Native Linguist": "images/methodology_step_2_linguist.svg",
+                        "Domain Expert": "images/methodology_step_2_expert.svg",
+                        "Cultural Calibration": "images/methodology_step_2_cultural.svg",
                         
-                        "Human Translation": "images/methodology_step_3.png",
-                        "Cultural Adaptation": "images/methodology_step_3_adaptation.png",
+                        "Human Translation": "images/methodology_step_3_human.svg",
+                        "Cultural Adaptation": "images/methodology_step_3_adaptation.svg",
                         "SLA Compliance": "images/methodology_step_3_sla.svg",
                         
-                        "Self-Review": "images/methodology_step_4.png",
+                        "Self-Review": "images/methodology_step_4_self.svg",
                         "Peer Edit": "images/methodology_step_4_peer.svg",
                         "QA Audit": "images/methodology_step_4_qa.svg",
                         "PM Sign-off": "images/methodology_step_4_pm.svg"
@@ -9419,7 +9419,7 @@ Enhanced Color System – "Luminous Precision"
                         tags.forEach((tag, idx) => {
                             if (idx === index) {
                                 tag.classList.add('active');
-                                const tagText = tag.textContent.trim();
+                                const tagText = tag.textContent.trim().replace(/\s+/g, ' ');
                                 const newSrc = tagImageMap[tagText] || img.getAttribute('src');
                                 
                                 img.style.opacity = '0';

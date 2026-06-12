@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+    <defs>
+        <linearGradient id="glowTeal" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#14b8a6" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#0f766e" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="glowCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#0891b2" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#14b8a6" />
+            <stop offset="100%" stop-color="#22d3ee" />
+        </linearGradient>
+        <filter id="blur" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="30" />
+        </filter>
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- Deep Tech Background -->
+    <rect width="600" height="400" fill="#060713" />
+    
+    <!-- Grid -->
+    <g stroke="rgba(255,255,255,0.03)" stroke-width="1">
+        <line x1="100" y1="0" x2="100" y2="400" />
+        <line x1="200" y1="0" x2="200" y2="400" />
+        <line x1="300" y1="0" x2="300" y2="400" />
+        <line x1="400" y1="0" x2="400" y2="400" />
+        <line x1="500" y1="0" x2="500" y2="400" />
+        <line x1="0" y1="100" x2="600" y2="100" />
+        <line x1="0" y1="200" x2="600" y2="200" />
+        <line x1="0" y1="300" x2="600" y2="300" />
+    </g>
+
+    <!-- Glowing Background Blobs -->
+    <circle cx="200" cy="180" r="100" fill="url(#glowTeal)" filter="url(#blur)" />
+    <circle cx="400" cy="220" r="95" fill="url(#glowCyan)" filter="url(#blur)" />
+
+    <!-- Human Translation Panel (Glassmorphism Card) -->
+    <g transform="translate(150, 95)">
+        <rect x="0" y="0" width="300" height="210" rx="16" fill="rgba(15, 17, 34, 0.65)" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5" />
+        <rect x="0" y="0" width="300" height="210" rx="16" fill="none" stroke="url(#cardGrad)" stroke-width="1" opacity="0.35" />
+        
+        <!-- Stylized Writing/Tablet Board -->
+        <g transform="translate(35, 30)">
+            <text x="0" y="10" fill="#14b8a6" font-family="'Manrope', sans-serif" font-size="10" font-weight="700" letter-spacing="0.05em">HUMAN CRAFTED</text>
+            <line x1="0" y1="20" x2="230" y2="20" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+            
+            <!-- Graphic line drawings representing handwritten text -->
+            <path d="M 10 50 C 30 30 40 60 70 45 S 100 30 130 50 S 170 60 210 40" fill="none" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round" filter="url(#glow)" />
+            <path d="M 10 90 C 35 75 50 100 80 85 S 120 70 150 90 T 210 80" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2" stroke-linecap="round" />
+            
+            <!-- Stylized fountain pen drawing -->
+            <g transform="translate(180, 15)" filter="url(#glow)">
+                <path d="M 0 45 L 30 15 L 35 20 L 5 50 Z" fill="#14b8a6" stroke="#22d3ee" stroke-width="1" />
+                <path d="M 0 45 L 3 43 L 5 50 Z" fill="#fff" /> <!-- Pen nib tip -->
+            </g>
+        </g>
+
+        <!-- No-Robot / 100% Human Seal -->
+        <g transform="translate(35, 150)">
+            <rect x="0" y="0" width="230" height="30" rx="6" fill="rgba(20, 184, 166, 0.08)" stroke="rgba(20, 184, 166, 0.2)" stroke-width="1.5" />
+            <!-- Inner check status -->
+            <circle cx="18" cy="15" r="7" fill="none" stroke="#14b8a6" stroke-width="1.5" />
+            <path d="M 14 15 l 3 3 l 5 -5" fill="none" stroke="#14b8a6" stroke-width="2" stroke-linecap="round" />
+            <text x="34" y="19" fill="#14b8a6" font-family="'Bricolage Grotesque', sans-serif" font-size="10" font-weight="800">100% MANUAL HUMAN TRANSLATION</text>
+        </g>
+    </g>
+</svg>

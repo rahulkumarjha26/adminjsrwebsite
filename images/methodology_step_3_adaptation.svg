@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+    <defs>
+        <linearGradient id="glowRose" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f43f5e" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#be123c" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="glowPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#a855f7" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#7e22ce" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f43f5e" />
+            <stop offset="100%" stop-color="#a855f7" />
+        </linearGradient>
+        <filter id="blur" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="30" />
+        </filter>
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- Deep Tech Background -->
+    <rect width="600" height="400" fill="#060713" />
+    
+    <!-- Grid -->
+    <g stroke="rgba(255,255,255,0.03)" stroke-width="1">
+        <line x1="100" y1="0" x2="100" y2="400" />
+        <line x1="200" y1="0" x2="200" y2="400" />
+        <line x1="300" y1="0" x2="300" y2="400" />
+        <line x1="400" y1="0" x2="400" y2="400" />
+        <line x1="500" y1="0" x2="500" y2="400" />
+        <line x1="0" y1="100" x2="600" y2="100" />
+        <line x1="0" y1="200" x2="600" y2="200" />
+        <line x1="0" y1="300" x2="600" y2="300" />
+    </g>
+
+    <!-- Glowing Background Blobs -->
+    <circle cx="200" cy="180" r="100" fill="url(#glowRose)" filter="url(#blur)" />
+    <circle cx="400" cy="220" r="95" fill="url(#glowPurple)" filter="url(#blur)" />
+
+    <!-- Cultural Adaptation Card (Glassmorphism Card) -->
+    <g transform="translate(150, 95)">
+        <rect x="0" y="0" width="300" height="210" rx="16" fill="rgba(15, 17, 34, 0.65)" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5" />
+        <rect x="0" y="0" width="300" height="210" rx="16" fill="none" stroke="url(#cardGrad)" stroke-width="1" opacity="0.35" />
+        
+        <!-- Locale nodes linked by adaptation line -->
+        <g transform="translate(30, 40)">
+            <!-- Left Node (US Source) -->
+            <circle cx="40" cy="40" r="30" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" />
+            <text x="40" y="44" fill="rgba(255,255,255,0.4)" font-family="'Manrope', sans-serif" font-size="12" font-weight="700" text-anchor="middle">EN-US</text>
+            
+            <!-- Link Line with glowing center pulse -->
+            <path d="M 70 40 L 170 40" stroke="rgba(255,255,255,0.1)" stroke-width="3" />
+            <path d="M 70 40 L 170 40" stroke="#f43f5e" stroke-width="3" stroke-dasharray="20 40" filter="url(#glow)" />
+            
+            <!-- Right Node (Japan Target) -->
+            <circle cx="200" cy="40" r="30" fill="rgba(168, 85, 247, 0.1)" stroke="#a855f7" stroke-width="1.5" filter="url(#glow)" />
+            <text x="200" y="44" fill="#a855f7" font-family="'Manrope', sans-serif" font-size="12" font-weight="700" text-anchor="middle">JA-JP</text>
+        </g>
+        
+        <!-- Metrics/Adaptation Parameters -->
+        <g transform="translate(30, 130)">
+            <!-- Parameter: Currencies, Dates, Metrics -->
+            <rect x="0" y="0" width="240" height="50" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+            
+            <!-- Icons or placeholders for metrics -->
+            <text x="20" y="20" fill="rgba(255,255,255,0.6)" font-family="'Manrope', sans-serif" font-size="9" font-weight="700">USD ($) ➔ JPY (¥)</text>
+            <rect x="20" y="28" width="80" height="4" rx="2" fill="#f43f5e" opacity="0.8" />
+            
+            <text x="140" y="20" fill="rgba(255,255,255,0.6)" font-family="'Manrope', sans-serif" font-size="9" font-weight="700">Miles ➔ Kilometers</text>
+            <rect x="140" y="28" width="70" height="4" rx="2" fill="#a855f7" opacity="0.8" />
+        </g>
+    </g>
+</svg>

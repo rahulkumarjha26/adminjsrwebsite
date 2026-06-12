@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+    <defs>
+        <linearGradient id="glowIndigo" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#6366f1" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#4f46e5" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="glowViolet" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#6d28d9" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#6366f1" />
+            <stop offset="100%" stop-color="#8b5cf6" />
+        </linearGradient>
+        <filter id="blur" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="30" />
+        </filter>
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- Deep Tech Background -->
+    <rect width="600" height="400" fill="#060713" />
+    
+    <!-- Grid -->
+    <g stroke="rgba(255,255,255,0.03)" stroke-width="1">
+        <line x1="100" y1="0" x2="100" y2="400" />
+        <line x1="200" y1="0" x2="200" y2="400" />
+        <line x1="300" y1="0" x2="300" y2="400" />
+        <line x1="400" y1="0" x2="400" y2="400" />
+        <line x1="500" y1="0" x2="500" y2="400" />
+        <line x1="0" y1="100" x2="600" y2="100" />
+        <line x1="0" y1="200" x2="600" y2="200" />
+        <line x1="0" y1="300" x2="600" y2="300" />
+    </g>
+
+    <!-- Glowing Background Blobs -->
+    <circle cx="200" cy="220" r="100" fill="url(#glowIndigo)" filter="url(#blur)" />
+    <circle cx="400" cy="180" r="95" fill="url(#glowViolet)" filter="url(#blur)" />
+
+    <!-- Cultural Calibration Panel (Glassmorphism Card) -->
+    <g transform="translate(150, 95)">
+        <rect x="0" y="0" width="300" height="210" rx="16" fill="rgba(15, 17, 34, 0.65)" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5" />
+        <rect x="0" y="0" width="300" height="210" rx="16" fill="none" stroke="url(#cardGrad)" stroke-width="1" opacity="0.35" />
+        
+        <!-- Calibration Sliders & Knobs -->
+        <g transform="translate(35, 30)">
+            <text x="0" y="10" fill="#6366f1" font-family="'Manrope', sans-serif" font-size="10" font-weight="700" letter-spacing="0.05em">LOCALE CALIBRATION</text>
+            <line x1="0" y1="20" x2="230" y2="20" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+            
+            <!-- Parameter 1 (Dialect) -->
+            <g transform="translate(0, 35)">
+                <text x="0" y="12" fill="rgba(255,255,255,0.6)" font-family="'Manrope', sans-serif" font-size="9" font-weight="600">Dialect Nuance</text>
+                <line x1="85" y1="8" x2="210" y2="8" stroke="rgba(255,255,255,0.1)" stroke-width="3" stroke-linecap="round" />
+                <line x1="85" y1="8" x2="180" y2="8" stroke="#6366f1" stroke-width="3" stroke-linecap="round" />
+                <circle cx="180" cy="8" r="5" fill="#6366f1" filter="url(#glow)" />
+            </g>
+            
+            <!-- Parameter 2 (Idiomatic) -->
+            <g transform="translate(0, 65)">
+                <text x="0" y="12" fill="rgba(255,255,255,0.6)" font-family="'Manrope', sans-serif" font-size="9" font-weight="600">Idiomatic Flow</text>
+                <line x1="85" y1="8" x2="210" y2="8" stroke="rgba(255,255,255,0.1)" stroke-width="3" stroke-linecap="round" />
+                <line x1="85" y1="8" x2="150" y2="8" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round" />
+                <circle cx="150" cy="8" r="5" fill="#8b5cf6" filter="url(#glow)" />
+            </g>
+
+            <!-- Parameter 3 (Cultural Taboos) -->
+            <g transform="translate(0, 95)">
+                <text x="0" y="12" fill="rgba(255,255,255,0.6)" font-family="'Manrope', sans-serif" font-size="9" font-weight="600">Taboo Filter</text>
+                <line x1="85" y1="8" x2="210" y2="8" stroke="rgba(255,255,255,0.1)" stroke-width="3" stroke-linecap="round" />
+                <line x1="85" y1="8" x2="200" y2="8" stroke="#6366f1" stroke-width="3" stroke-linecap="round" />
+                <circle cx="200" cy="8" r="5" fill="#6366f1" filter="url(#glow)" />
+            </g>
+        </g>
+
+        <!-- Graphic Scale status bar -->
+        <g transform="translate(35, 160)">
+            <rect x="0" y="0" width="230" height="25" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+            <circle cx="18" cy="12" r="5" fill="#8b5cf6" filter="url(#glow)" />
+            <text x="32" y="16" fill="rgba(255,255,255,0.5)" font-family="'Manrope', sans-serif" font-size="9" font-weight="700">CALIBRATED FOR: SPANISH (LATAM)</text>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+    <defs>
+        <linearGradient id="glowRose" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f43f5e" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#be123c" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="glowOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f97316" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#c2410c" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f43f5e" />
+            <stop offset="100%" stop-color="#f97316" />
+        </linearGradient>
+        <filter id="blur" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="30" />
+        </filter>
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- Deep Tech Background -->
+    <rect width="600" height="400" fill="#060713" />
+    
+    <!-- Grid -->
+    <g stroke="rgba(255,255,255,0.03)" stroke-width="1">
+        <line x1="100" y1="0" x2="100" y2="400" />
+        <line x1="200" y1="0" x2="200" y2="400" />
+        <line x1="300" y1="0" x2="300" y2="400" />
+        <line x1="400" y1="0" x2="400" y2="400" />
+        <line x1="500" y1="0" x2="500" y2="400" />
+        <line x1="0" y1="100" x2="600" y2="100" />
+        <line x1="0" y1="200" x2="600" y2="200" />
+        <line x1="0" y1="300" x2="600" y2="300" />
+    </g>
+
+    <!-- Glowing Background Blobs -->
+    <circle cx="200" cy="220" r="100" fill="url(#glowRose)" filter="url(#blur)" />
+    <circle cx="400" cy="180" r="95" fill="url(#glowOrange)" filter="url(#blur)" />
+
+    <!-- Dashboard Panel (Glassmorphism Card) -->
+    <g transform="translate(150, 95)">
+        <rect x="0" y="0" width="300" height="210" rx="16" fill="rgba(15, 17, 34, 0.65)" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5" />
+        <rect x="0" y="0" width="300" height="210" rx="16" fill="none" stroke="url(#cardGrad)" stroke-width="1" opacity="0.35" />
+        
+        <!-- Native Globe Wireframe -->
+        <g transform="translate(40, 30)">
+            <circle cx="40" cy="40" r="40" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+            <circle cx="40" cy="40" r="40" fill="none" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="10 8" />
+            
+            <ellipse cx="40" cy="40" rx="20" ry="40" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+            <ellipse cx="40" cy="40" rx="40" ry="20" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+            <line x1="40" y1="0" x2="40" y2="80" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+            <line x1="0" y1="40" x2="80" y2="40" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+        </g>
+        
+        <!-- Speech Bubbles (Translation representation) -->
+        <!-- Bubble 1 (Source) -->
+        <g transform="translate(140, 35)">
+            <rect x="0" y="0" width="120" height="35" rx="8" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
+            <path d="M15 35 l-5 5 l0 -5" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
+            <rect x="15" y="10" width="90" height="4" rx="2" fill="rgba(255,255,255,0.4)" />
+            <rect x="15" y="20" width="60" height="4" rx="2" fill="rgba(255,255,255,0.4)" />
+            <!-- Text A -->
+            <text x="98" y="24" fill="#f43f5e" font-family="'Bricolage Grotesque', sans-serif" font-size="14" font-weight="800" text-anchor="middle">A</text>
+        </g>
+
+        <!-- Bubble 2 (Target) -->
+        <g transform="translate(140, 90)" filter="url(#glow)">
+            <rect x="0" y="0" width="120" height="35" rx="8" fill="rgba(244, 63, 94, 0.1)" stroke="#f43f5e" stroke-width="1.5" />
+            <path d="M105 35 l5 5 l0 -5" fill="rgba(244, 63, 94, 0.1)" stroke="#f43f5e" stroke-width="1.5" />
+            <rect x="15" y="10" width="70" height="4" rx="2" fill="#fff" opacity="0.9" />
+            <rect x="15" y="20" width="50" height="4" rx="2" fill="#fff" opacity="0.9" />
+            <!-- Glyph -->
+            <text x="98" y="24" fill="#f43f5e" font-family="'Manrope', sans-serif" font-size="13" font-weight="700" text-anchor="middle">文</text>
+        </g>
+
+        <!-- Verification Banner -->
+        <g transform="translate(30, 155)">
+            <rect x="0" y="0" width="240" height="28" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+            <circle cx="18" cy="14" r="5" fill="#f43f5e" filter="url(#glow)" />
+            <text x="32" y="18" fill="rgba(255,255,255,0.6)" font-family="'Manrope', sans-serif" font-size="9" font-weight="700">NATIVE SPEAKER ASSIGNED</text>
+        </g>
+    </g>
+</svg>

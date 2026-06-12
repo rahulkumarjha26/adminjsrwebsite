@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+    <defs>
+        <linearGradient id="glowCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#0891b2" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="glowTeal" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#14b8a6" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#0f766e" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#22d3ee" />
+            <stop offset="100%" stop-color="#14b8a6" />
+        </linearGradient>
+        <filter id="blur" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="30" />
+        </filter>
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- Deep Tech Background -->
+    <rect width="600" height="400" fill="#060713" />
+    
+    <!-- Grid -->
+    <g stroke="rgba(255,255,255,0.03)" stroke-width="1">
+        <line x1="100" y1="0" x2="100" y2="400" />
+        <line x1="200" y1="0" x2="200" y2="400" />
+        <line x1="300" y1="0" x2="300" y2="400" />
+        <line x1="400" y1="0" x2="400" y2="400" />
+        <line x1="500" y1="0" x2="500" y2="400" />
+        <line x1="0" y1="100" x2="600" y2="100" />
+        <line x1="0" y1="200" x2="600" y2="200" />
+        <line x1="0" y1="300" x2="600" y2="300" />
+    </g>
+
+    <!-- Glowing Background Blobs -->
+    <circle cx="220" cy="220" r="100" fill="url(#glowCyan)" filter="url(#blur)" />
+    <circle cx="380" cy="180" r="90" fill="url(#glowTeal)" filter="url(#blur)" />
+
+    <!-- Glossary Setup Dashboard (Glassmorphism Card) -->
+    <g transform="translate(150, 95)">
+        <rect x="0" y="0" width="300" height="210" rx="16" fill="rgba(15, 17, 34, 0.65)" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5" />
+        <rect x="0" y="0" width="300" height="210" rx="16" fill="none" stroke="url(#cardGrad)" stroke-width="1" opacity="0.35" />
+        
+        <!-- Database Columns (Term & translation) -->
+        <g transform="translate(30, 30)">
+            <text x="0" y="10" fill="#22d3ee" font-family="'Manrope', sans-serif" font-size="10" font-weight="700" letter-spacing="0.05em">SOURCE TERM</text>
+            <line x1="0" y1="20" x2="100" y2="20" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" />
+            
+            <!-- Rows -->
+            <rect x="0" y="35" width="85" height="15" rx="4" fill="rgba(34, 211, 238, 0.08)" stroke="rgba(34, 211, 238, 0.2)" stroke-width="1" />
+            <text x="8" y="46" fill="rgba(255,255,255,0.8)" font-family="'Manrope', sans-serif" font-size="9">BrandName</text>
+            
+            <rect x="0" y="65" width="85" height="15" rx="4" fill="rgba(34, 211, 238, 0.08)" stroke="rgba(34, 211, 238, 0.2)" stroke-width="1" />
+            <text x="8" y="76" fill="rgba(255,255,255,0.8)" font-family="'Manrope', sans-serif" font-size="9">Keyword_UI</text>
+            
+            <rect x="0" y="95" width="85" height="15" rx="4" fill="rgba(34, 211, 238, 0.08)" stroke="rgba(34, 211, 238, 0.2)" stroke-width="1" />
+            <text x="8" y="106" fill="rgba(255,255,255,0.8)" font-family="'Manrope', sans-serif" font-size="9">TechnicalTerm</text>
+        </g>
+        
+        <!-- Link indicators -->
+        <g transform="translate(135, 30)" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round" fill="none">
+            <path d="M 0 42 L 30 42" stroke-dasharray="3 3" />
+            <path d="M 0 72 L 30 72" />
+            <path d="M 0 102 L 30 102" stroke-dasharray="3 3" />
+            
+            <!-- Arrows -->
+            <path d="M 26 39 L 30 42 L 26 45" />
+            <path d="M 26 69 L 30 72 L 26 75" />
+            <path d="M 26 99 L 30 102 L 26 105" />
+        </g>
+
+        <g transform="translate(185, 30)">
+            <text x="0" y="10" fill="#14b8a6" font-family="'Manrope', sans-serif" font-size="10" font-weight="700" letter-spacing="0.05em">TARGET TERM</text>
+            <line x1="0" y1="20" x2="85" y2="20" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" />
+            
+            <!-- Rows -->
+            <rect x="0" y="35" width="85" height="15" rx="4" fill="rgba(20, 184, 166, 0.08)" stroke="rgba(20, 184, 166, 0.2)" stroke-width="1" />
+            <text x="8" y="46" fill="rgba(255,255,255,0.8)" font-family="'Manrope', sans-serif" font-size="9">NoTranslate</text>
+            
+            <rect x="0" y="65" width="85" height="15" rx="4" fill="rgba(20, 184, 166, 0.08)" stroke="rgba(20, 184, 166, 0.2)" stroke-width="1" />
+            <text x="8" y="76" fill="rgba(255,255,255,0.8)" font-family="'Manrope', sans-serif" font-size="9">Traducción_UI</text>
+            
+            <rect x="0" y="95" width="85" height="15" rx="4" fill="rgba(20, 184, 166, 0.08)" stroke="rgba(20, 184, 166, 0.2)" stroke-width="1" />
+            <text x="8" y="106" fill="rgba(255,255,255,0.8)" font-family="'Manrope', sans-serif" font-size="9">TérminoTéc</text>
+        </g>
+
+        <!-- Lock/Key Validation Bar at the bottom -->
+        <rect x="30" y="160" width="240" height="25" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+        <path d="M45 172 l3 3 l6 -6" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" />
+        <text x="65" y="176" fill="rgba(255,255,255,0.5)" font-family="'Manrope', sans-serif" font-size="9" font-weight="700">GLOSSARY LOCKED &amp; VERIFIED</text>
+    </g>
+</svg>

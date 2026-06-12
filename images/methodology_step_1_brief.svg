@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+    <defs>
+        <linearGradient id="glowBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="glowIndigo" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#6366f1" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#4f46e5" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#3b82f6" />
+            <stop offset="100%" stop-color="#6366f1" />
+        </linearGradient>
+        <filter id="blur" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="30" />
+        </filter>
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- Deep Tech Background -->
+    <rect width="600" height="400" fill="#060713" />
+    
+    <!-- Grid -->
+    <g stroke="rgba(255,255,255,0.03)" stroke-width="1">
+        <line x1="100" y1="0" x2="100" y2="400" stroke-dasharray="5 5" />
+        <line x1="200" y1="0" x2="200" y2="400" />
+        <line x1="300" y1="0" x2="300" y2="400" />
+        <line x1="400" y1="0" x2="400" y2="400" />
+        <line x1="500" y1="0" x2="500" y2="400" stroke-dasharray="5 5" />
+        <line x1="0" y1="100" x2="600" y2="100" />
+        <line x1="0" y1="200" x2="600" y2="200" />
+        <line x1="0" y1="300" x2="600" y2="300" />
+    </g>
+
+    <!-- Glowing Background Blobs -->
+    <circle cx="200" cy="180" r="100" fill="url(#glowBlue)" filter="url(#blur)" />
+    <circle cx="400" cy="220" r="95" fill="url(#glowIndigo)" filter="url(#blur)" />
+
+    <!-- Technical UI Accents -->
+    <circle cx="300" cy="200" r="160" fill="none" stroke="rgba(59, 130, 246, 0.1)" stroke-width="1.5" />
+    <circle cx="300" cy="200" r="140" fill="none" stroke="rgba(99, 102, 241, 0.08)" stroke-dasharray="8 8" />
+
+    <!-- Project Brief Panel (Glassmorphism Card) -->
+    <g transform="translate(160, 95)">
+        <rect x="0" y="0" width="280" height="210" rx="16" fill="rgba(15, 17, 34, 0.65)" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5" />
+        <rect x="0" y="0" width="280" height="210" rx="16" fill="none" stroke="url(#cardGrad)" stroke-width="1" opacity="0.35" />
+        
+        <!-- Folder Icon -->
+        <g transform="translate(30, 30)">
+            <path d="M 0 5 L 0 50 L 70 50 L 70 15 L 40 15 L 30 5 Z" fill="rgba(59, 130, 246, 0.15)" stroke="#3b82f6" stroke-width="1.5" />
+            <rect x="15" y="22" width="40" height="4" rx="1" fill="#3b82f6" opacity="0.8" />
+            <rect x="15" y="32" width="30" height="4" rx="1" fill="rgba(255,255,255,0.4)" />
+        </g>
+        
+        <!-- Brief Title Header -->
+        <g transform="translate(120, 32)">
+            <rect x="0" y="0" width="130" height="12" rx="3" fill="#6366f1" opacity="0.9" />
+            <rect x="0" y="20" width="80" height="6" rx="2" fill="rgba(255,255,255,0.4)" />
+        </g>
+
+        <!-- Document Parameters Checklist -->
+        <g transform="translate(30, 105)">
+            <!-- Item 1 -->
+            <path d="M 0 5 L 6 11 L 16 1" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" />
+            <rect x="25" y="3" width="160" height="4" rx="2" fill="rgba(255,255,255,0.5)" />
+            <rect x="25" y="11" width="100" height="4" rx="2" fill="rgba(255,255,255,0.25)" />
+            
+            <!-- Item 2 -->
+            <g transform="translate(0, 32)">
+                <path d="M 0 5 L 6 11 L 16 1" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" />
+                <rect x="25" y="3" width="180" height="4" rx="2" fill="rgba(255,255,255,0.5)" />
+                <rect x="25" y="11" width="130" height="4" rx="2" fill="rgba(255,255,255,0.25)" />
+            </g>
+
+            <!-- Item 3 -->
+            <g transform="translate(0, 64)">
+                <path d="M 0 5 L 6 11 L 16 1" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" />
+                <rect x="25" y="3" width="140" height="4" rx="2" fill="rgba(255,255,255,0.5)" />
+                <rect x="25" y="11" width="90" height="4" rx="2" fill="rgba(255,255,255,0.25)" />
+            </g>
+        </g>
+    </g>
+
+    <!-- Glowing Gear icon (Overlaying bottom right of the card) -->
+    <g transform="translate(390, 240)" filter="url(#glow)">
+        <circle cx="30" cy="30" r="30" fill="#0f1122" stroke="#3b82f6" stroke-width="2" />
+        <circle cx="30" cy="30" r="12" fill="none" stroke="#3b82f6" stroke-width="2.5" />
+        <!-- Gear teeth -->
+        <line x1="30" y1="6" x2="30" y2="14" stroke="#3b82f6" stroke-width="4.5" stroke-linecap="round" />
+        <line x1="30" y1="46" x2="30" y2="54" stroke="#3b82f6" stroke-width="4.5" stroke-linecap="round" />
+        <line x1="6" y1="30" x2="14" y2="30" stroke="#3b82f6" stroke-width="4.5" stroke-linecap="round" />
+        <line x1="46" y1="30" x2="54" y2="30" stroke="#3b82f6" stroke-width="4.5" stroke-linecap="round" />
+        <line x1="13" y1="13" x2="19" y2="19" stroke="#3b82f6" stroke-width="4.5" stroke-linecap="round" />
+        <line x1="41" y1="41" x2="47" y2="47" stroke="#3b82f6" stroke-width="4.5" stroke-linecap="round" />
+        <line x1="13" y1="47" x2="19" y2="41" stroke="#3b82f6" stroke-width="4.5" stroke-linecap="round" />
+        <line x1="41" y1="19" x2="47" y2="13" stroke="#3b82f6" stroke-width="4.5" stroke-linecap="round" />
+    </g>
+</svg>

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+    <defs>
+        <linearGradient id="glowRose" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f43f5e" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#be123c" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="glowViolet" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#6d28d9" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f43f5e" />
+            <stop offset="100%" stop-color="#8b5cf6" />
+        </linearGradient>
+        <filter id="blur" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="30" />
+        </filter>
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- Deep Tech Background -->
+    <rect width="600" height="400" fill="#060713" />
+    
+    <!-- Grid -->
+    <g stroke="rgba(255,255,255,0.03)" stroke-width="1">
+        <line x1="100" y1="0" x2="100" y2="400" />
+        <line x1="200" y1="0" x2="200" y2="400" />
+        <line x1="300" y1="0" x2="300" y2="400" />
+        <line x1="400" y1="0" x2="400" y2="400" />
+        <line x1="500" y1="0" x2="500" y2="400" />
+        <line x1="0" y1="100" x2="600" y2="100" />
+        <line x1="0" y1="200" x2="600" y2="200" />
+        <line x1="0" y1="300" x2="600" y2="300" />
+    </g>
+
+    <!-- Glowing Background Blobs -->
+    <circle cx="220" cy="180" r="100" fill="url(#glowRose)" filter="url(#blur)" />
+    <circle cx="380" cy="220" r="95" fill="url(#glowViolet)" filter="url(#blur)" />
+
+    <!-- Self-Review Panel (Glassmorphism Card) -->
+    <g transform="translate(150, 95)">
+        <rect x="0" y="0" width="300" height="210" rx="16" fill="rgba(15, 17, 34, 0.65)" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5" />
+        <rect x="0" y="0" width="300" height="210" rx="16" fill="none" stroke="url(#cardGrad)" stroke-width="1" opacity="0.35" />
+        
+        <!-- Checklist review -->
+        <g transform="translate(30, 30)">
+            <text x="0" y="10" fill="#f43f5e" font-family="'Manrope', sans-serif" font-size="10" font-weight="700" letter-spacing="0.05em">SELF-REVIEW</text>
+            <line x1="0" y1="20" x2="240" y2="20" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+            
+            <!-- Rows -->
+            <g transform="translate(0, 35)">
+                <path d="M 0 5 L 6 11 L 16 1" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" />
+                <rect x="25" y="3" width="130" height="4" rx="2" fill="rgba(255,255,255,0.5)" />
+                <rect x="25" y="11" width="90" height="4" rx="2" fill="rgba(255,255,255,0.25)" />
+            </g>
+            
+            <g transform="translate(0, 65)">
+                <path d="M 0 5 L 6 11 L 16 1" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" />
+                <rect x="25" y="3" width="160" height="4" rx="2" fill="rgba(255,255,255,0.5)" />
+                <rect x="25" y="11" width="110" height="4" rx="2" fill="rgba(255,255,255,0.25)" />
+            </g>
+
+            <g transform="translate(0, 95)">
+                <path d="M 0 5 L 6 11 L 16 1" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" />
+                <rect x="25" y="3" width="140" height="4" rx="2" fill="rgba(255,255,255,0.5)" />
+                <rect x="25" y="11" width="80" height="4" rx="2" fill="rgba(255,255,255,0.25)" />
+            </g>
+        </g>
+
+        <!-- Progress ring (Self validation score) -->
+        <g transform="translate(210, 50)" filter="url(#glow)">
+            <circle cx="35" cy="35" r="30" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="5" />
+            <circle cx="35" cy="35" r="30" fill="none" stroke="#8b5cf6" stroke-width="5" stroke-dasharray="160 188" />
+            <text x="35" y="39" fill="#8b5cf6" font-family="'Manrope', sans-serif" font-size="11" font-weight="800" text-anchor="middle">100%</text>
+        </g>
+    </g>
+</svg>
