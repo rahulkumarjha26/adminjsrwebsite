@@ -1453,9 +1453,15 @@ Enhanced Color System – "Luminous Precision"
             display: flex;
             flex-direction: column;
             width: 100%;
-            min-height: 100vh;
-            padding: 80px 1.5rem;
+            min-height: auto;
+            padding: 3rem 1.5rem;
             box-sizing: border-box;
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .hero-split-layout {
+                padding: 4rem 2rem;
+            }
         }
 
         @media (min-width: 1024px) {
@@ -1463,10 +1469,11 @@ Enhanced Color System – "Luminous Precision"
                 flex-direction: row;
                 align-items: center;
                 justify-content: space-between;
-                padding: 120px 2rem;
+                padding: 6rem 2rem;
                 max-width: 1300px;
                 margin: 0 auto;
                 gap: 5rem;
+                min-height: 75vh;
             }
         }
 
@@ -4102,9 +4109,6 @@ Enhanced Color System – "Luminous Precision"
         }
 
         @media (max-width: 768px) {
-            .hero-split-layout {
-                padding-top: 120px;
-            }
 
             .dictionary-card {
                 max-width: 100%;
@@ -4817,9 +4821,7 @@ Enhanced Color System – "Luminous Precision"
                 padding: 120px 2rem 80px;
             }
 
-            .hero-split-layout {
-                padding-top: 100px;
-            }
+
 
             .architect-grid {
                 grid-template-columns: repeat(6, 1fr);
