@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -19,8 +20,8 @@
     <meta name="twitter:description"
         content="300+ languages. ISO certified. 11+ years of excellence in Localization, Translation & BPO.">
     <link rel="canonical" href="https://www.jsrconsulting.com">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    <link rel="icon" type="image/png" href="logo.png">
 
     <!-- Fonts -->
     <link
@@ -164,7 +165,7 @@ Enhanced Color System – "Luminous Precision"
             font-family: var(--font-body);
             overflow-x: hidden;
             margin: 0;
-            cursor: none;
+            cursor: default;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             transition: background-color 0.8s ease, color 0.5s ease;
@@ -341,7 +342,11 @@ Enhanced Color System – "Luminous Precision"
         body.has-custom-cursor .pod-icon,
         body.has-custom-cursor .pod-primary,
         body.has-custom-cursor .theme-toggle-wrapper,
-        body.has-custom-cursor .trust-card {
+        body.has-custom-cursor .trust-card,
+        body.has-custom-cursor .nav-hamburger,
+        body.has-custom-cursor .back-to-top,
+        body.has-custom-cursor .deliverable-tag,
+        body.has-custom-cursor .map-node {
             cursor: none !important;
         }
 
@@ -462,7 +467,6 @@ Enhanced Color System – "Luminous Precision"
             scale: 0.7;
             position: relative;
             display: inline-block;
-            cursor: none !important;
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -747,7 +751,7 @@ Enhanced Color System – "Luminous Precision"
             padding: 0;
             z-index: 1001;
             position: relative;
-            cursor: none !important;
+            cursor: pointer;
         }
 
         .hamburger-line {
@@ -810,10 +814,11 @@ Enhanced Color System – "Luminous Precision"
             z-index: 1000;
             justify-content: flex-start;
             align-items: center;
-            padding-top: 15vh;
-            padding-bottom: 3rem;
-            gap: 2rem;
+            padding-top: clamp(80px, 12vh, 120px);
+            padding-bottom: 2rem;
+            gap: clamp(0.75rem, 2.5vh, 1.5rem);
             overflow-y: auto;
+            overflow-x: hidden;
             animation: navSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
@@ -827,7 +832,7 @@ Enhanced Color System – "Luminous Precision"
 
         .nav-links.mobile-open .nav-link {
             font-family: var(--font-display);
-            font-size: 3.5rem;
+            font-size: clamp(1.75rem, 5vh, 2.25rem);
             font-weight: 300;
             text-transform: none;
             letter-spacing: -0.02em;
@@ -3105,11 +3110,13 @@ Enhanced Color System – "Luminous Precision"
         }
 
         .section-divider {
-            height: 1px;
-            width: 100%;
-            background: linear-gradient(90deg, transparent, var(--border), transparent);
-            margin: 0;
-            border: none;
+            height: 1px !important;
+            width: 100% !important;
+            background: linear-gradient(90deg, transparent, var(--border), transparent) !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+            display: block !important;
             opacity: 0.6;
             position: relative;
             z-index: 10;
@@ -3299,12 +3306,14 @@ Enhanced Color System – "Luminous Precision"
             transform: translateY(0);
         }
 
-        .method-step:nth-child(even) {
-            direction: rtl;
-        }
-
-        .method-step:nth-child(even)>* {
-            direction: ltr;
+        @media (min-width: 769px) {
+            .method-step:nth-child(even) .step-content {
+                grid-column: 2;
+            }
+            .method-step:nth-child(even) .step-visual {
+                grid-column: 1;
+                grid-row: 1;
+            }
         }
 
         @media (max-width: 768px) {
@@ -3414,6 +3423,12 @@ Enhanced Color System – "Luminous Precision"
             border-color: rgba(129, 140, 248, 0.3);
         }
 
+        .deliverable-tag.active {
+            background: var(--accent) !important;
+            color: #fff !important;
+            border-color: var(--accent) !important;
+        }
+
         .step-visual {
             position: relative;
             overflow: hidden;
@@ -3427,7 +3442,7 @@ Enhanced Color System – "Luminous Precision"
             height: 120%;
             object-fit: cover;
             filter: grayscale(40%) contrast(1.05);
-            transition: filter 0.6s;
+            transition: filter 0.6s, opacity 0.25s ease-in-out;
         }
 
         .method-step:hover .step-img {
@@ -3506,21 +3521,19 @@ Enhanced Color System – "Luminous Precision"
             transform: translateY(0);
         }
 
-        .project-row:nth-child(even) {
-            direction: rtl;
-        }
-
-        .project-row:nth-child(even)>* {
-            direction: ltr;
+        @media (min-width: 769px) {
+            .project-row:nth-child(even) .proj-text-col {
+                grid-column: 2;
+            }
+            .project-row:nth-child(even) .proj-img-col {
+                grid-column: 1;
+                grid-row: 1;
+            }
         }
 
         @media (max-width: 768px) {
             .project-row {
                 grid-template-columns: 1fr;
-            }
-
-            .project-row:nth-child(even) {
-                direction: ltr;
             }
         }
 
@@ -4120,7 +4133,7 @@ Enhanced Color System – "Luminous Precision"
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: none;
+            cursor: pointer;
             z-index: 999;
             opacity: 0;
             transform: translateY(20px);
@@ -4341,11 +4354,12 @@ Enhanced Color System – "Luminous Precision"
         }
 
         /* ============================================================
-   FIX 2: HIDE FLOATING WHATSAPP ON MOBILE
+   FIX 2: HIDE FLOATING WHATSAPP & GRAIN OVERLAY ON MOBILE
    (Mobile CTA bar already contains a WhatsApp button)
    ============================================================ */
         @media (max-width: 767px) {
-            .floating-whatsapp {
+            .floating-whatsapp,
+            .grain-overlay {
                 display: none !important;
             }
         }
@@ -4357,8 +4371,8 @@ Enhanced Color System – "Luminous Precision"
         /* --- Mobile Hero Section --- */
         @media (max-width: 767px) {
             .main-hero {
-                padding: 100px 1.25rem 100px;
-                min-height: 100svh;
+                padding: 90px 1.25rem 50px;
+                min-height: auto;
             }
 
 
@@ -4878,6 +4892,11 @@ Enhanced Color System – "Luminous Precision"
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: var(--shadow-sm);
+            text-align: left;
+            font-family: inherit;
+            color: inherit;
+            width: 100%;
+            cursor: pointer;
         }
 
         .trust-card::before {
@@ -5152,7 +5171,56 @@ Enhanced Color System – "Luminous Precision"
         }
 
         /* === INDUSTRIES ENHANCED === */
-        /* === INDUSTRIES ENHANCED === */
+        .industry-card-image-wrap {
+            width: 100%;
+            height: 160px;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            position: relative;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .industry-card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .industry-card:hover .industry-card-image {
+            transform: scale(1.05);
+        }
+
+        .industry-card-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            flex-grow: 1;
+        }
+
+        @media (min-width: 1024px) {
+            .industry-card.featured {
+                grid-column: span 2;
+                flex-direction: row;
+                gap: 2.5rem;
+                align-items: stretch;
+            }
+
+            .industry-card.featured .industry-card-image-wrap {
+                width: 45%;
+                height: auto;
+                min-height: 250px;
+                margin-bottom: 0;
+            }
+
+            .industry-card.featured .industry-card-content {
+                width: 55%;
+            }
+        }
+
         .industry-card {
             position: relative;
             padding: 3rem 2.5rem;
@@ -5175,7 +5243,7 @@ Enhanced Color System – "Luminous Precision"
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at top right in oklch, hsla(var(--industry-color), 0.12), transparent 70%);
+            background: radial-gradient(circle at top right, hsla(var(--industry-color), 0.12), transparent 70%);
             opacity: 0;
             transition: opacity 0.6s ease;
             z-index: -1;
@@ -5186,7 +5254,7 @@ Enhanced Color System – "Luminous Precision"
             position: absolute;
             inset: -1px;
             border-radius: 25px;
-            background: linear-gradient(135deg in oklch, hsla(var(--industry-color), 0.4), transparent 50%, hsla(var(--industry-color), 0.2));
+            background: linear-gradient(135deg, hsla(var(--industry-color), 0.4), transparent 50%, hsla(var(--industry-color), 0.2));
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
@@ -5452,7 +5520,7 @@ Enhanced Color System – "Luminous Precision"
             }
 
             body {
-                padding-bottom: 80px;
+                padding-bottom: 140px;
             }
         }
 
@@ -5853,19 +5921,67 @@ Enhanced Color System – "Luminous Precision"
             display: block;
         }
 
+        .mobile-hubs-list {
+            display: none;
+        }
+
         @media (max-width: 768px) {
             .network-map-container {
-                height: 380px;
+                height: auto;
+                margin-top: 1.5rem;
             }
 
-            .node-label {
-                font-size: 0.65rem;
+            .map-bg-wrapper,
+            .map-node {
+                display: none !important;
             }
 
-            .map-tooltip {
-                width: 240px;
-                font-size: 0.75rem;
-                padding: 1rem;
+            .mobile-hubs-list {
+                display: flex;
+                flex-direction: column;
+                gap: 1.25rem;
+                text-align: left;
+            }
+
+            .mobile-hub-card {
+                background: var(--glass-bg);
+                border: 1px solid var(--glass-border);
+                border-radius: 16px;
+                padding: 1.5rem;
+                backdrop-filter: blur(var(--glass-blur));
+                -webkit-backdrop-filter: blur(var(--glass-blur));
+                box-shadow: var(--shadow-card);
+                transition: transform 0.3s ease, border-color 0.3s ease;
+            }
+
+            .mobile-hub-card:hover {
+                border-color: var(--accent);
+                transform: translateY(-2px);
+            }
+
+            .mobile-hub-title {
+                font-family: var(--font-display);
+                font-size: 1.1rem;
+                font-weight: 700;
+                color: var(--text-primary);
+                margin-bottom: 0.75rem;
+            }
+
+            .mobile-hub-info {
+                font-size: 0.85rem;
+                line-height: 1.6;
+                margin-bottom: 0.5rem;
+                color: var(--text-secondary);
+            }
+
+            .mobile-hub-info:last-child {
+                margin-bottom: 0;
+            }
+
+            .mobile-hub-info strong {
+                color: var(--text-primary);
+                display: inline-block;
+                min-width: 95px;
             }
         }
 
@@ -6248,7 +6364,7 @@ Enhanced Color System – "Luminous Precision"
     <!-- Navigation -->
     <nav class="main-nav" id="main-nav">
         <a href="#" class="brand-mark">
-            <img src="logo.png" alt="Admin JSR Logo" class="brand-logo">
+            <img src="logo.png" alt="Admin JSR Logo" class="brand-logo" loading="eager" fetchpriority="high">
             <span>Admin JSR Consulting</span>
         </a>
         <ul class="nav-links">
@@ -6535,9 +6651,9 @@ Enhanced Color System – "Luminous Precision"
                     excellence.</p>
             </div>
             <div class="trust-cards-grid scroll-reveal">
-                <div class="trust-card" tabindex="0" role="button" aria-haspopup="dialog" aria-expanded="false"
+                <button class="trust-card" aria-haspopup="dialog" aria-expanded="false"
                     data-drawer="nda-drawer">
-                    <div class="trust-card-icon">🔒</div>
+                    <span class="trust-card-icon">🔒</span>
                     <h3 class="trust-card-title">NDA Protected</h3>
                     <p class="trust-card-desc">Your confidentiality is our top priority. Every project is protected by
                         legally binding non-disclosure agreements from day one.</p>
@@ -6547,10 +6663,10 @@ Enhanced Color System – "Luminous Precision"
                         <li>No data retention beyond project completion</li>
                         <li>GDPR &amp; international privacy compliance</li>
                     </ul>
-                </div>
-                <div class="trust-card" tabindex="0" role="button" aria-haspopup="dialog" aria-expanded="false"
+                </button>
+                <button class="trust-card" aria-haspopup="dialog" aria-expanded="false"
                     data-drawer="data-secure-drawer">
-                    <div class="trust-card-icon">🛡️</div>
+                    <span class="trust-card-icon">🛡️</span>
                     <h3 class="trust-card-title">Data Secure</h3>
                     <p class="trust-card-desc">Enterprise-grade security across all operations. Your files, data, and
                         communications are protected at every level.</p>
@@ -6560,10 +6676,10 @@ Enhanced Color System – "Luminous Precision"
                         <li>24/7 monitoring for unauthorized activity</li>
                         <li>ISO 27001:2013 certified security management</li>
                     </ul>
-                </div>
-                <div class="trust-card" tabindex="0" role="button" aria-haspopup="dialog" aria-expanded="false"
+                </button>
+                <button class="trust-card" aria-haspopup="dialog" aria-expanded="false"
                     data-drawer="iso-drawer">
-                    <div class="trust-card-icon">📋</div>
+                    <span class="trust-card-icon">📋</span>
                     <h3 class="trust-card-title">ISO Certified</h3>
                     <p class="trust-card-desc">International certifications validate our commitment to quality and
                         information security at every operational level.</p>
@@ -6573,10 +6689,10 @@ Enhanced Color System – "Luminous Precision"
                         <li>Regular third-party audits &amp; verified processes</li>
                         <li>Documented, repeatable delivery methodology</li>
                     </ul>
-                </div>
-                <div class="trust-card" tabindex="0" role="button" aria-haspopup="dialog" aria-expanded="false"
+                </button>
+                <button class="trust-card" aria-haspopup="dialog" aria-expanded="false"
                     data-drawer="quality-drawer">
-                    <div class="trust-card-icon">✅</div>
+                    <span class="trust-card-icon">✅</span>
                     <h3 class="trust-card-title">4-Layer Quality Check</h3>
                     <p class="trust-card-desc">Zero tolerance for errors. Every deliverable is validated by four
                         independent quality layers before it reaches you.</p>
@@ -6586,10 +6702,10 @@ Enhanced Color System – "Luminous Precision"
                         <li>Layer 3: QA specialist style &amp; consistency audit</li>
                         <li>Layer 4: Project Manager final sign-off &amp; delivery</li>
                     </ul>
-                </div>
-                <div class="trust-card" tabindex="0" role="button" aria-haspopup="dialog" aria-expanded="false"
+                </button>
+                <button class="trust-card" aria-haspopup="dialog" aria-expanded="false"
                     data-drawer="track-record-drawer">
-                    <div class="trust-card-icon">🏆</div>
+                    <span class="trust-card-icon">🏆</span>
                     <h3 class="trust-card-title">Proven Track Record</h3>
                     <p class="trust-card-desc">11+ years of trusted service to global tech platforms and enterprise
                         clients across four continents.</p>
@@ -6599,7 +6715,7 @@ Enhanced Color System – "Luminous Precision"
                         <li>6-hour, 12-hour &amp; 24-hour SLA consistently met</li>
                         <li>100+ in-house linguistic specialists on staff</li>
                     </ul>
-                </div>
+                </button>
             </div>
             <div class="trust-pull-quote scroll-reveal">
                 <blockquote>"Admin JSR's consistency and attention to detail have made them indispensable for our
@@ -6872,6 +6988,21 @@ Enhanced Color System – "Luminous Precision"
                 <a href="#command-footer" class="exp-card-cta">Discuss Project <i
                         class="fa-solid fa-arrow-right"></i></a>
             </div>
+
+            <!-- 9. BPO Services -->
+            <div class="exp-card">
+                <i class="fa-solid fa-headset exp-card-icon"></i>
+                <h3 class="exp-card-title">BPO Services</h3>
+                <p class="exp-card-desc">Comprehensive BPO solutions including omnichannel support, lead generation, and virtual assistants in 300+ languages.</p>
+                <ul class="exp-features">
+                    <li>Omnichannel Customer Support</li>
+                    <li>Lead Gen & Virtual Assistants</li>
+                    <li>Back-Office & Data Entry</li>
+                    <li>24/7 Global Delivery Support</li>
+                </ul>
+                <a href="#bpo-section" class="exp-card-cta">Explore BPO <i
+                        class="fa-solid fa-arrow-right"></i></a>
+            </div>
         </div>
     </section>
 
@@ -7035,209 +7166,292 @@ Enhanced Color System – "Luminous Precision"
                     that believes language should never be a barrier to growth.</p>
             </div>
             <div class="industries-grid scroll-reveal">
+                <!-- 1. Media & Entertainment -->
                 <a href="#command-footer" class="industry-card" style="--industry-color: 340, 82%, 52%;">
-                    <div class="industry-card-header">
-                        <div class="industry-card-icon-wrap">
-                            <i class="fa-solid fa-film"></i>
+                    <div class="industry-card-image-wrap">
+                        <img src="images/industry_media.png" alt="Media &amp; Entertainment" class="industry-card-image" loading="lazy">
+                    </div>
+                    <div class="industry-card-content">
+                        <div class="industry-card-header">
+                            <div class="industry-card-icon-wrap">
+                                <i class="fa-solid fa-film"></i>
+                            </div>
+                            <div class="industry-card-stat">1,200+ Hrs</div>
                         </div>
-                        <div class="industry-card-stat">1,200+ Hrs</div>
+                        <div class="industry-card-name">Media &amp; Entertainment</div>
+                        <div class="industry-card-tagline">Seamless localization for movies, OTT content, and entertainment broadcasts.</div>
+                        <div class="industry-card-tags">
+                            <span class="industry-tag-pill">Subtitling</span>
+                            <span class="industry-tag-pill">Dubbing</span>
+                            <span class="industry-tag-pill">Creative Localization</span>
+                        </div>
+                        <div class="industry-card-outcome">Faster global launches, authentic storytelling, and higher viewer engagement.</div>
+                        <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                     </div>
-                    <div class="industry-card-name">Media &amp; Entertainment</div>
-                    <div class="industry-card-tagline">Seamless localization for movies, OTT content, and entertainment broadcasts.</div>
-                    <div class="industry-card-tags">
-                        <span class="industry-tag-pill">Subtitling</span>
-                        <span class="industry-tag-pill">Dubbing</span>
-                        <span class="industry-tag-pill">Creative Localization</span>
-                    </div>
-                    <div class="industry-card-outcome">Faster global launches, authentic storytelling, and higher viewer engagement.</div>
-                    <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                 </a>
+
+                <!-- 2. YouTube & OTT Platforms -->
                 <a href="#command-footer" class="industry-card" style="--industry-color: 0, 75%, 50%;">
-                    <div class="industry-card-header">
-                        <div class="industry-card-icon-wrap">
-                            <i class="fa-brands fa-youtube"></i>
+                    <div class="industry-card-image-wrap">
+                        <img src="images/industry_youtube.png" alt="YouTube &amp; OTT Platforms" class="industry-card-image" loading="lazy">
+                    </div>
+                    <div class="industry-card-content">
+                        <div class="industry-card-header">
+                            <div class="industry-card-icon-wrap">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                            <div class="industry-card-stat">150M+ Views</div>
                         </div>
-                        <div class="industry-card-stat">150M+ Views</div>
+                        <div class="industry-card-name">YouTube &amp; OTT Platforms</div>
+                        <div class="industry-card-tagline">Scale your channel globally with hyper-accurate multi-language dubbing and metadata.</div>
+                        <div class="industry-card-tags">
+                            <span class="industry-tag-pill">Transcription</span>
+                            <span class="industry-tag-pill">Annotation</span>
+                            <span class="industry-tag-pill">SEO Metadata</span>
+                        </div>
+                        <div class="industry-card-outcome">Increased international audience retention, wider subscriber base, and faster monetization.</div>
+                        <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                     </div>
-                    <div class="industry-card-name">YouTube &amp; OTT Platforms</div>
-                    <div class="industry-card-tagline">Scale your channel globally with hyper-accurate multi-language dubbing and metadata.</div>
-                    <div class="industry-card-tags">
-                        <span class="industry-tag-pill">Transcription</span>
-                        <span class="industry-tag-pill">Annotation</span>
-                        <span class="industry-tag-pill">SEO Metadata</span>
-                    </div>
-                    <div class="industry-card-outcome">Increased international audience retention, wider subscriber base, and faster monetization.</div>
-                    <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                 </a>
+
+                <!-- 3. AI / Machine Learning -->
                 <a href="#command-footer" class="industry-card" style="--industry-color: 190, 95%, 42%;">
-                    <div class="industry-card-header">
-                        <div class="industry-card-icon-wrap">
-                            <i class="fa-solid fa-microchip"></i>
+                    <div class="industry-card-image-wrap">
+                        <img src="images/industry_ai.png" alt="AI / Machine Learning" class="industry-card-image" loading="lazy">
+                    </div>
+                    <div class="industry-card-content">
+                        <div class="industry-card-header">
+                            <div class="industry-card-icon-wrap">
+                                <i class="fa-solid fa-microchip"></i>
+                            </div>
+                            <div class="industry-card-stat">10M+ Labeled</div>
                         </div>
-                        <div class="industry-card-stat">10M+ Labeled</div>
+                        <div class="industry-card-name">AI / Machine Learning</div>
+                        <div class="industry-card-tagline">High-quality dataset annotation, text tagging, and speech processing to train global AI models.</div>
+                        <div class="industry-card-tags">
+                            <span class="industry-tag-pill">Data Annotation</span>
+                            <span class="industry-tag-pill">Training Datasets</span>
+                            <span class="industry-tag-pill">NLP</span>
+                        </div>
+                        <div class="industry-card-outcome">Improved model prediction accuracy, minimized demographic biases, and robust multilingual coverage.</div>
+                        <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                     </div>
-                    <div class="industry-card-name">AI / Machine Learning</div>
-                    <div class="industry-card-tagline">High-quality dataset annotation, text tagging, and speech processing to train global AI models.</div>
-                    <div class="industry-card-tags">
-                        <span class="industry-tag-pill">Data Annotation</span>
-                        <span class="industry-tag-pill">Training Datasets</span>
-                        <span class="industry-tag-pill">NLP</span>
-                    </div>
-                    <div class="industry-card-outcome">Improved model prediction accuracy, minimized demographic biases, and robust multilingual coverage.</div>
-                    <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                 </a>
+
+                <!-- 4. Legal Companies -->
                 <a href="#command-footer" class="industry-card" style="--industry-color: 42, 45%, 45%;">
-                    <div class="industry-card-header">
-                        <div class="industry-card-icon-wrap">
-                            <i class="fa-solid fa-scale-balanced"></i>
+                    <div class="industry-card-image-wrap">
+                        <img src="images/industry_legal.png" alt="Legal Companies" class="industry-card-image" loading="lazy">
+                    </div>
+                    <div class="industry-card-content">
+                        <div class="industry-card-header">
+                            <div class="industry-card-icon-wrap">
+                                <i class="fa-solid fa-scale-balanced"></i>
+                            </div>
+                            <div class="industry-card-stat">100% Accepted</div>
                         </div>
-                        <div class="industry-card-stat">100% Accepted</div>
+                        <div class="industry-card-name">Legal Companies</div>
+                        <div class="industry-card-tagline">Certified, airtight legal translations for global regulatory environments and court filings.</div>
+                        <div class="industry-card-tags">
+                            <span class="industry-tag-pill">Contracts</span>
+                            <span class="industry-tag-pill">Patents</span>
+                            <span class="industry-tag-pill">Compliance</span>
+                        </div>
+                        <div class="industry-card-outcome">Complete risk mitigation, certified compliance under regional laws, and seamless cross-border operations.</div>
+                        <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                     </div>
-                    <div class="industry-card-name">Legal Companies</div>
-                    <div class="industry-card-tagline">Certified, airtight legal translations for global regulatory environments and court filings.</div>
-                    <div class="industry-card-tags">
-                        <span class="industry-tag-pill">Contracts</span>
-                        <span class="industry-tag-pill">Patents</span>
-                        <span class="industry-tag-pill">Compliance</span>
-                    </div>
-                    <div class="industry-card-outcome">Complete risk mitigation, certified compliance under regional laws, and seamless cross-border operations.</div>
-                    <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                 </a>
+
+                <!-- 5. Medical & Healthcare -->
                 <a href="#command-footer" class="industry-card" style="--industry-color: 150, 70%, 38%;">
-                    <div class="industry-card-header">
-                        <div class="industry-card-icon-wrap">
-                            <i class="fa-solid fa-staff-snake"></i>
+                    <div class="industry-card-image-wrap">
+                        <img src="images/industry_medical.png" alt="Medical &amp; Healthcare" class="industry-card-image" loading="lazy">
+                    </div>
+                    <div class="industry-card-content">
+                        <div class="industry-card-header">
+                            <div class="industry-card-icon-wrap">
+                                <i class="fa-solid fa-staff-snake"></i>
+                            </div>
+                            <div class="industry-card-stat">ISO 17100</div>
                         </div>
-                        <div class="industry-card-stat">ISO 17100</div>
+                        <div class="industry-card-name">Medical &amp; Healthcare</div>
+                        <div class="industry-card-tagline">Regulatory-compliant translation for clinical research, pharmaceutical devices, and patient care.</div>
+                        <div class="industry-card-tags">
+                            <span class="industry-tag-pill">Clinical Docs</span>
+                            <span class="industry-tag-pill">FDA Compliance</span>
+                            <span class="industry-tag-pill">Patient Materials</span>
+                        </div>
+                        <div class="industry-card-outcome">Patient safety, full compliance with international health bodies, and faster global market access.</div>
+                        <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                     </div>
-                    <div class="industry-card-name">Medical &amp; Healthcare</div>
-                    <div class="industry-card-tagline">Regulatory-compliant translation for clinical research, pharmaceutical devices, and patient care.</div>
-                    <div class="industry-card-tags">
-                        <span class="industry-tag-pill">Clinical Docs</span>
-                        <span class="industry-tag-pill">FDA Compliance</span>
-                        <span class="industry-tag-pill">Patient Materials</span>
-                    </div>
-                    <div class="industry-card-outcome">Patient safety, full compliance with international health bodies, and faster global market access.</div>
-                    <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                 </a>
+
+                <!-- 6. IT & Software -->
                 <a href="#command-footer" class="industry-card" style="--industry-color: 245, 75%, 60%;">
-                    <div class="industry-card-header">
-                        <div class="industry-card-icon-wrap">
-                            <i class="fa-solid fa-code"></i>
+                    <div class="industry-card-image-wrap">
+                        <img src="images/industry_software.png" alt="IT &amp; Software" class="industry-card-image" loading="lazy">
+                    </div>
+                    <div class="industry-card-content">
+                        <div class="industry-card-header">
+                            <div class="industry-card-icon-wrap">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                            <div class="industry-card-stat">50+ Apps</div>
                         </div>
-                        <div class="industry-card-stat">50+ Apps</div>
+                        <div class="industry-card-name">IT &amp; Software</div>
+                        <div class="industry-card-tagline">UI/UX localization and technical translation to launch software in worldwide markets.</div>
+                        <div class="industry-card-tags">
+                            <span class="industry-tag-pill">UI Localization</span>
+                            <span class="industry-tag-pill">Tech Docs</span>
+                            <span class="industry-tag-pill">Help Centers</span>
+                        </div>
+                        <div class="industry-card-outcome">Higher global adoption rates, reduced localization support overhead, and smooth software deployments.</div>
+                        <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                     </div>
-                    <div class="industry-card-name">IT &amp; Software</div>
-                    <div class="industry-card-tagline">UI/UX localization and technical translation to launch software in worldwide markets.</div>
-                    <div class="industry-card-tags">
-                        <span class="industry-tag-pill">UI Localization</span>
-                        <span class="industry-tag-pill">Tech Docs</span>
-                        <span class="industry-tag-pill">Help Centers</span>
-                    </div>
-                    <div class="industry-card-outcome">Higher global adoption rates, reduced localization support overhead, and smooth software deployments.</div>
-                    <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                 </a>
+
+                <!-- 7. E-Commerce & Retail -->
                 <a href="#command-footer" class="industry-card" style="--industry-color: 320, 80%, 55%;">
-                    <div class="industry-card-header">
-                        <div class="industry-card-icon-wrap">
-                            <i class="fa-solid fa-cart-shopping"></i>
+                    <div class="industry-card-image-wrap">
+                        <img src="images/industry_ecommerce.png" alt="E-Commerce &amp; Retail" class="industry-card-image" loading="lazy">
+                    </div>
+                    <div class="industry-card-content">
+                        <div class="industry-card-header">
+                            <div class="industry-card-icon-wrap">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </div>
+                            <div class="industry-card-stat">+45% Sales</div>
                         </div>
-                        <div class="industry-card-stat">+45% Sales</div>
+                        <div class="industry-card-name">E-Commerce &amp; Retail</div>
+                        <div class="industry-card-tagline">High-converting product description localization, marketing transcreation, and customer support.</div>
+                        <div class="industry-card-tags">
+                            <span class="industry-tag-pill">Product Feeds</span>
+                            <span class="industry-tag-pill">Ad Creative</span>
+                            <span class="industry-tag-pill">Live Chat BPO</span>
+                        </div>
+                        <div class="industry-card-outcome">Enhanced trust in local checkout experiences, optimized search engine visibility, and reduced cart bounce.</div>
+                        <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                     </div>
-                    <div class="industry-card-name">E-Commerce &amp; Retail</div>
-                    <div class="industry-card-tagline">High-converting product description localization, marketing transcreation, and customer support.</div>
-                    <div class="industry-card-tags">
-                        <span class="industry-tag-pill">Product Feeds</span>
-                        <span class="industry-tag-pill">Ad Creative</span>
-                        <span class="industry-tag-pill">Live Chat BPO</span>
-                    </div>
-                    <div class="industry-card-outcome">Enhanced trust in local checkout experiences, optimized search engine visibility, and reduced cart bounce.</div>
-                    <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                 </a>
+
+                <!-- 8. Gaming -->
                 <a href="#command-footer" class="industry-card" style="--industry-color: 90, 80%, 42%;">
-                    <div class="industry-card-header">
-                        <div class="industry-card-icon-wrap">
-                            <i class="fa-solid fa-gamepad"></i>
+                    <div class="industry-card-image-wrap">
+                        <img src="images/industry_gaming.png" alt="Gaming" class="industry-card-image" loading="lazy">
+                    </div>
+                    <div class="industry-card-content">
+                        <div class="industry-card-header">
+                            <div class="industry-card-icon-wrap">
+                                <i class="fa-solid fa-gamepad"></i>
+                            </div>
+                            <div class="industry-card-stat">20+ Shipped</div>
                         </div>
-                        <div class="industry-card-stat">20+ Shipped</div>
+                        <div class="industry-card-name">Gaming</div>
+                        <div class="industry-card-tagline">Immersive game script translation, localized audio dubbing, and cultural consulting.</div>
+                        <div class="industry-card-tags">
+                            <span class="industry-tag-pill">Character Dialogue</span>
+                            <span class="industry-tag-pill">In-Game UI</span>
+                            <span class="industry-tag-pill">Voice Acting</span>
+                        </div>
+                        <div class="industry-card-outcome">Immersive gaming experiences, high app-store reviews, and worldwide player retention.</div>
+                        <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                     </div>
-                    <div class="industry-card-name">Gaming</div>
-                    <div class="industry-card-tagline">Immersive game script translation, localized audio dubbing, and cultural consulting.</div>
-                    <div class="industry-card-tags">
-                        <span class="industry-tag-pill">Character Dialogue</span>
-                        <span class="industry-tag-pill">In-Game UI</span>
-                        <span class="industry-tag-pill">Voice Acting</span>
-                    </div>
-                    <div class="industry-card-outcome">Immersive gaming experiences, high app-store reviews, and worldwide player retention.</div>
-                    <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                 </a>
+
+                <!-- 9. Education & E-Learning -->
                 <a href="#command-footer" class="industry-card" style="--industry-color: 25, 85%, 48%;">
-                    <div class="industry-card-header">
-                        <div class="industry-card-icon-wrap">
-                            <i class="fa-solid fa-graduation-cap"></i>
+                    <div class="industry-card-image-wrap">
+                        <img src="images/industry_education.png" alt="Education &amp; E-Learning" class="industry-card-image" loading="lazy">
+                    </div>
+                    <div class="industry-card-content">
+                        <div class="industry-card-header">
+                            <div class="industry-card-icon-wrap">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <div class="industry-card-stat">100k+ Reached</div>
                         </div>
-                        <div class="industry-card-stat">100k+ Reached</div>
+                        <div class="industry-card-name">Education &amp; E-Learning</div>
+                        <div class="industry-card-tagline">Empowering global learners through localized academic courses, corporate training, and digital content.</div>
+                        <div class="industry-card-tags">
+                            <span class="industry-tag-pill">Courseware</span>
+                            <span class="industry-tag-pill">Video Subtitles</span>
+                            <span class="industry-tag-pill">Training Manuals</span>
+                        </div>
+                        <div class="industry-card-outcome">Enhanced comprehension rates, standardized corporate training compliance, and globally scalable curriculum.</div>
+                        <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                     </div>
-                    <div class="industry-card-name">Education &amp; E-Learning</div>
-                    <div class="industry-card-tagline">Empowering global learners through localized academic courses, corporate training, and digital content.</div>
-                    <div class="industry-card-tags">
-                        <span class="industry-tag-pill">Courseware</span>
-                        <span class="industry-tag-pill">Video Subtitles</span>
-                        <span class="industry-tag-pill">Training Manuals</span>
-                    </div>
-                    <div class="industry-card-outcome">Enhanced comprehension rates, standardized corporate training compliance, and globally scalable curriculum.</div>
-                    <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                 </a>
+
+                <!-- 10. Banking & Finance -->
                 <a href="#command-footer" class="industry-card" style="--industry-color: 210, 80%, 45%;">
-                    <div class="industry-card-header">
-                        <div class="industry-card-icon-wrap">
-                            <i class="fa-solid fa-building-columns"></i>
+                    <div class="industry-card-image-wrap">
+                        <img src="images/industry_finance.png" alt="Banking &amp; Finance" class="industry-card-image" loading="lazy">
+                    </div>
+                    <div class="industry-card-content">
+                        <div class="industry-card-header">
+                            <div class="industry-card-icon-wrap">
+                                <i class="fa-solid fa-building-columns"></i>
+                            </div>
+                            <div class="industry-card-stat">$10B+ Secure</div>
                         </div>
-                        <div class="industry-card-stat">$10B+ Secure</div>
+                        <div class="industry-card-name">Banking &amp; Finance</div>
+                        <div class="industry-card-tagline">Secure, precise translation of financial statements, investment pitches, and banking apps.</div>
+                        <div class="industry-card-tags">
+                            <span class="industry-tag-pill">Financial Reporting</span>
+                            <span class="industry-tag-pill">Pitchdecks</span>
+                            <span class="industry-tag-pill">Compliance</span>
+                        </div>
+                        <div class="industry-card-outcome">Absolute security protocols, accurate and expert financial lexicon, and increased investor confidence.</div>
+                        <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                     </div>
-                    <div class="industry-card-name">Banking &amp; Finance</div>
-                    <div class="industry-card-tagline">Secure, precise translation of financial statements, investment pitches, and banking apps.</div>
-                    <div class="industry-card-tags">
-                        <span class="industry-tag-pill">Financial Reporting</span>
-                        <span class="industry-tag-pill">Pitchdecks</span>
-                        <span class="industry-tag-pill">Compliance</span>
-                    </div>
-                    <div class="industry-card-outcome">Absolute security protocols, accurate and expert financial lexicon, and increased investor confidence.</div>
-                    <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                 </a>
+
+                <!-- 11. Government & Public Sector -->
                 <a href="#command-footer" class="industry-card" style="--industry-color: 200, 60%, 45%;">
-                    <div class="industry-card-header">
-                        <div class="industry-card-icon-wrap">
-                            <i class="fa-solid fa-landmark-flag"></i>
+                    <div class="industry-card-image-wrap">
+                        <img src="images/industry_government.png" alt="Government &amp; Public Sector" class="industry-card-image" loading="lazy">
+                    </div>
+                    <div class="industry-card-content">
+                        <div class="industry-card-header">
+                            <div class="industry-card-icon-wrap">
+                                <i class="fa-solid fa-landmark-flag"></i>
+                            </div>
+                            <div class="industry-card-stat">100% Compliant</div>
                         </div>
-                        <div class="industry-card-stat">100% Compliant</div>
+                        <div class="industry-card-name">Government &amp; Public Sector</div>
+                        <div class="industry-card-tagline">Official document translation and citizen communications for government bodies.</div>
+                        <div class="industry-card-tags">
+                            <span class="industry-tag-pill">Public Notices</span>
+                            <span class="industry-tag-pill">Policy Documents</span>
+                            <span class="industry-tag-pill">Helplines</span>
+                        </div>
+                        <div class="industry-card-outcome">Equal community accessibility to civic resources, high regulatory adherence, and civic trust.</div>
+                        <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                     </div>
-                    <div class="industry-card-name">Government &amp; Public Sector</div>
-                    <div class="industry-card-tagline">Official document translation and citizen communications for government bodies.</div>
-                    <div class="industry-card-tags">
-                        <span class="industry-tag-pill">Public Notices</span>
-                        <span class="industry-tag-pill">Policy Documents</span>
-                        <span class="industry-tag-pill">Helplines</span>
-                    </div>
-                    <div class="industry-card-outcome">Equal community accessibility to civic resources, high regulatory adherence, and civic trust.</div>
-                    <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                 </a>
+
+                <!-- 12. Marketing & Advertising -->
                 <a href="#command-footer" class="industry-card" style="--industry-color: 15, 90%, 50%;">
-                    <div class="industry-card-header">
-                        <div class="industry-card-icon-wrap">
-                            <i class="fa-solid fa-bullhorn"></i>
+                    <div class="industry-card-image-wrap">
+                        <img src="images/industry_marketing.png" alt="Marketing &amp; Advertising" class="industry-card-image" loading="lazy">
+                    </div>
+                    <div class="industry-card-content">
+                        <div class="industry-card-header">
+                            <div class="industry-card-icon-wrap">
+                                <i class="fa-solid fa-bullhorn"></i>
+                            </div>
+                            <div class="industry-card-stat">3.5x Engagement</div>
                         </div>
-                        <div class="industry-card-stat">3.5x Engagement</div>
+                        <div class="industry-card-name">Marketing &amp; Advertising</div>
+                        <div class="industry-card-tagline">Culturally calibrated transcreation that keeps your brand's emotional resonance intact globally.</div>
+                        <div class="industry-card-tags">
+                            <span class="industry-tag-pill">Ad Copy</span>
+                            <span class="industry-tag-pill">Brand Guidelines</span>
+                            <span class="industry-tag-pill">Slogans</span>
+                        </div>
+                        <div class="industry-card-outcome">Strong global brand consistency, higher click-through rates, and culturally appropriate marketing.</div>
+                        <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                     </div>
-                    <div class="industry-card-name">Marketing &amp; Advertising</div>
-                    <div class="industry-card-tagline">Culturally calibrated transcreation that keeps your brand's emotional resonance intact globally.</div>
-                    <div class="industry-card-tags">
-                        <span class="industry-tag-pill">Ad Copy</span>
-                        <span class="industry-tag-pill">Brand Guidelines</span>
-                        <span class="industry-tag-pill">Slogans</span>
-                    </div>
-                    <div class="industry-card-outcome">Strong global brand consistency, higher click-through rates, and culturally appropriate marketing.</div>
-                    <div class="industry-card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                 </a>
             </div>
         </div>
@@ -7948,6 +8162,39 @@ Enhanced Color System – "Luminous Precision"
                         </div>
                     </div>
                 </div>
+                <!-- Mobile Hubs Cards List -->
+                <div class="mobile-hubs-list">
+                    <div class="mobile-hub-card">
+                        <div class="mobile-hub-title">🇺🇸 North America Hub</div>
+                        <div class="mobile-hub-info"><strong>Languages:</strong> English (US), Spanish (LATAM), French (CA)</div>
+                        <div class="mobile-hub-info"><strong>Key Domains:</strong> AI Annotation, Software Localization, Legal Docs</div>
+                        <div class="mobile-hub-info"><strong>Availability:</strong> 24/7 Client Operations &amp; QA</div>
+                    </div>
+                    <div class="mobile-hub-card">
+                        <div class="mobile-hub-title">🇬🇧 European Hub</div>
+                        <div class="mobile-hub-info"><strong>Languages:</strong> English (UK), French, German, Italian, Spanish</div>
+                        <div class="mobile-hub-info"><strong>Key Domains:</strong> Legal Patents, Finance, Media Subtitling</div>
+                        <div class="mobile-hub-info"><strong>Availability:</strong> Core European Translations</div>
+                    </div>
+                    <div class="mobile-hub-card">
+                        <div class="mobile-hub-title">🇮🇳 South Asia Hub</div>
+                        <div class="mobile-hub-info"><strong>Languages:</strong> Hindi, Bengali, Tamil, and 22+ regional languages</div>
+                        <div class="mobile-hub-info"><strong>Key Domains:</strong> BPO Support, Transcription, AI Datasets</div>
+                        <div class="mobile-hub-info"><strong>Availability:</strong> Large Scale Production &amp; Multi-Shift</div>
+                    </div>
+                    <div class="mobile-hub-card">
+                        <div class="mobile-hub-title">🇸🇬 Southeast Asia Hub</div>
+                        <div class="mobile-hub-info"><strong>Languages:</strong> Malay, Indonesian, Vietnamese, Thai, Tagalog</div>
+                        <div class="mobile-hub-info"><strong>Key Domains:</strong> Technical Docs, E-learning, UI Localization</div>
+                        <div class="mobile-hub-info"><strong>Availability:</strong> APAC Localized Business Solutions</div>
+                    </div>
+                    <div class="mobile-hub-card">
+                        <div class="mobile-hub-title">🇯🇵 East Asia Hub</div>
+                        <div class="mobile-hub-info"><strong>Languages:</strong> Japanese, Korean, Simplified &amp; Traditional Chinese</div>
+                        <div class="mobile-hub-info"><strong>Key Domains:</strong> Game Localization, Patents, Medical Compliance</div>
+                        <div class="mobile-hub-info"><strong>Availability:</strong> High-Precision Editing &amp; Review</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -8290,21 +8537,48 @@ Enhanced Color System – "Luminous Precision"
                     hasMouse = true;
                     document.body.classList.add('has-custom-cursor');
 
+                    let loopRunning = false;
+                    let lastMoveTime = Date.now();
+
+                    const prefersMotion = window.matchMedia('(prefers-reduced-motion: no-preference)');
+
                     document.addEventListener('mousemove', (e) => {
                         mouseX = e.clientX;
                         mouseY = e.clientY;
+                        lastMoveTime = Date.now();
+
+                        if (!loopRunning && prefersMotion.matches) {
+                            loopRunning = true;
+                            animateCursor();
+                        }
                     });
 
-                    const prefersMotion = window.matchMedia('(prefers-reduced-motion: no-preference)');
                     function animateCursor() {
-                        if (!hasMouse) return;
+                        if (!hasMouse) {
+                            loopRunning = false;
+                            return;
+                        }
+                        
                         cDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
                         ringX += (mouseX - ringX) * 0.12;
                         ringY += (mouseY - ringY) * 0.12;
                         cRing.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+                        
+                        const dx = mouseX - ringX;
+                        const dy = mouseY - ringY;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        const timeSinceLastMove = Date.now() - lastMoveTime;
+
+                        if (distance < 0.1 && timeSinceLastMove > 1000) {
+                            loopRunning = false;
+                            return;
+                        }
+
                         requestAnimationFrame(animateCursor);
                     }
+
                     if (prefersMotion.matches) {
+                        loopRunning = true;
                         animateCursor();
                     } else {
                         document.addEventListener('mousemove', () => {
@@ -9073,6 +9347,105 @@ Enhanced Color System – "Luminous Precision"
                 });
             }
 
+            // 20b. METHODOLOGY TABS INTERACTION
+            (function() {
+                const steps = document.querySelectorAll('.method-step');
+                steps.forEach(step => {
+                    const tags = step.querySelectorAll('.deliverable-tag');
+                    const img = step.querySelector('.step-img');
+                    if (!img) return;
+
+                    const tagImageMap = {
+                        "Project Brief": "images/methodology_step_1.png",
+                        "Glossary Setup": "images/methodology_step_1_glossary.png",
+                        "PM Assigned": "images/methodology_step_1_pm.png",
+                        
+                        "Native Linguist": "images/methodology_step_2.png",
+                        "Domain Expert": "images/methodology_step_2_expert.png",
+                        "Cultural Calibration": "images/methodology_step_2_cultural.png",
+                        
+                        "Human Translation": "images/methodology_step_3.png",
+                        "Cultural Adaptation": "images/methodology_step_3_adaptation.png",
+                        "SLA Compliance": "images/bpo_lead_gen.png",
+                        
+                        "Self-Review": "images/methodology_step_4.png",
+                        "Peer Edit": "images/case_study_ai.png",
+                        "QA Audit": "images/case_study_media.png",
+                        "PM Sign-off": "images/case_study_global.png"
+                    };
+
+                    let autoCycleInterval = null;
+                    let idleTimeout = null;
+                    let currentIndex = 0;
+
+                    function startAutoCycle() {
+                        stopAutoCycle();
+                        stopIdleTimeout();
+                        autoCycleInterval = setInterval(() => {
+                            currentIndex = (currentIndex + 1) % tags.length;
+                            setTagActive(currentIndex);
+                        }, 5000); // cycle every 5 seconds
+                    }
+
+                    function stopAutoCycle() {
+                        if (autoCycleInterval) {
+                            clearInterval(autoCycleInterval);
+                            autoCycleInterval = null;
+                        }
+                    }
+
+                    function stopIdleTimeout() {
+                        if (idleTimeout) {
+                            clearTimeout(idleTimeout);
+                            idleTimeout = null;
+                        }
+                    }
+
+                    function handleUserInteraction(index) {
+                        stopAutoCycle();
+                        stopIdleTimeout();
+                        currentIndex = index;
+                        setTagActive(index);
+                        
+                        // Set 30-second timeout to return to tag 0 and resume auto-cycle
+                        idleTimeout = setTimeout(() => {
+                            currentIndex = 0;
+                            setTagActive(0);
+                            startAutoCycle();
+                        }, 30000);
+                    }
+
+                    function setTagActive(index) {
+                        tags.forEach((tag, idx) => {
+                            if (idx === index) {
+                                tag.classList.add('active');
+                                const tagText = tag.textContent.trim();
+                                const newSrc = tagImageMap[tagText] || img.getAttribute('src');
+                                
+                                img.style.opacity = '0';
+                                setTimeout(() => {
+                                    img.src = newSrc;
+                                    img.style.opacity = '1';
+                                }, 200);
+                            } else {
+                                tag.classList.remove('active');
+                            }
+                        });
+                    }
+
+                    // Initialize first tag as active and start cycling
+                    setTagActive(0);
+                    startAutoCycle();
+
+                    tags.forEach((tag, index) => {
+                        tag.style.cursor = 'pointer';
+                        tag.addEventListener('click', () => {
+                            handleUserInteraction(index);
+                        });
+                    });
+                });
+            })();
+
             // 21. HERO LUMINOUS CONSTELLATION BACKDROP
             (function() {
                 const canvas = document.getElementById('hero-language-canvas');
@@ -9122,7 +9495,7 @@ Enhanced Color System – "Luminous Precision"
 
                         this.char = glyphs[Math.floor(Math.random() * glyphs.length)];
                         this.alpha = 0;
-                        this.maxAlpha = (0.03 + this.depth * 0.12); // Max opacity based on depth
+                        this.maxAlpha = (width < 768 ? 0.08 : 0.03) + this.depth * (width < 768 ? 0.24 : 0.12); // Max opacity based on depth and viewport
                         
                         // Morphing states
                         this.morphing = false;
@@ -9195,7 +9568,7 @@ Enhanced Color System – "Luminous Precision"
                 function initParticles() {
                     particles.length = 0;
                     // Scale particle count based on screen width
-                    const count = width < 768 ? 16 : 42;
+                    const count = width < 768 ? 28 : 42;
                     for (let i = 0; i < count; i++) {
                         particles.push(new Particle());
                     }
