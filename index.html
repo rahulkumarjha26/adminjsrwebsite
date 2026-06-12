@@ -6019,6 +6019,550 @@ Enhanced Color System – "Luminous Precision"
                 }
             }
         }
+
+        /* ============================================================
+        SLA & CAPACITY CALCULATOR SECTION
+        ============================================================ */
+        .calculator-section {
+            background: linear-gradient(180deg, var(--bg-primary), var(--bg-elevated));
+            position: relative;
+            z-index: 10;
+        }
+
+        .calc-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .calc-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            align-items: stretch;
+        }
+
+        @media (min-width: 992px) {
+            .calc-grid {
+                grid-template-columns: 1.2fr 1fr;
+            }
+        }
+
+        .calc-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .calc-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--border-strong);
+        }
+
+        .calc-card-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .calc-card-title i {
+            color: var(--accent);
+        }
+
+        .calc-card-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        /* Service Selector Grid */
+        .service-selector-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        @media (max-width: 576px) {
+            .service-selector-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .service-tile {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-tile::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 12px;
+            padding: 1px;
+            background: var(--gradient-mixed);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-tile:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .service-tile.active {
+            background: var(--bg-surface);
+            border-color: transparent;
+        }
+        
+        .service-tile.active::before {
+            opacity: 1;
+        }
+
+        .service-tile-icon {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .service-tile.active .service-tile-icon {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .service-tile-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+
+        .service-tile-metric {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+        
+        .service-tile.active .service-tile-metric {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Slider Controls */
+        .calc-control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .calc-control-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .calc-control-label {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .calc-value-badge {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--accent);
+            background: var(--accent-glow);
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--border-strong);
+            box-shadow: var(--shadow-sm);
+            animation: badgePulseCompact 2s infinite alternate;
+        }
+
+        @keyframes badgePulseCompact {
+            0% { box-shadow: 0 0 0 0 var(--accent-glow); }
+            100% { box-shadow: 0 0 8px 2px var(--accent-glow); }
+        }
+
+        .slider-wrapper {
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .calc-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--border-strong);
+            outline: none;
+            transition: background 0.3s;
+        }
+
+        .calc-slider::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 6px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        .calc-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            margin-top: -7px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15), 0 0 0 4px var(--bg-surface);
+            transition: transform 0.1s, background-color 0.3s;
+        }
+        
+        .calc-slider:focus::-webkit-slider-thumb {
+            transform: scale(1.15);
+            background: var(--accent-hover);
+            box-shadow: 0 0 12px var(--accent-glow), 0 0 0 4px var(--bg-surface);
+        }
+
+        .calc-slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* SLA Switch Grid */
+        .sla-switch-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+        }
+
+        @media (max-width: 768px) {
+            .sla-switch-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .sla-btn {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1rem 0.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+        }
+
+        .sla-btn:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .sla-btn.active {
+            background: var(--bg-surface);
+            border-color: var(--accent);
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+        
+        .sla-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 20%;
+            right: 20%;
+            height: 2px;
+            background: var(--gradient-accent);
+            border-radius: 2px 2px 0 0;
+        }
+
+        .sla-time {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+        }
+
+        .sla-btn.active .sla-time {
+            color: var(--accent);
+        }
+
+        .sla-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+
+        .sla-btn.active .sla-label {
+            color: var(--text-secondary);
+        }
+
+        .sla-tag {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: var(--border);
+            color: var(--text-muted);
+        }
+
+        .sla-btn.active .sla-tag {
+            background: var(--accent-glow);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Dashboard Stat Styling */
+        .dashboard-stat-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            border-bottom: 1px solid var(--border-strong);
+            padding-bottom: 1.5rem;
+        }
+
+        .stat-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.25rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1;
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+        
+        .stat-value span.stat-unit {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            font-family: var(--font-body);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+
+        /* Timeline Styles */
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .timeline-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .timeline-steps::before {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 6px;
+            bottom: 6px;
+            width: 2px;
+            background: var(--border-strong);
+        }
+
+        .timeline-step-item {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+
+        .timeline-step-node {
+            position: absolute;
+            left: -22px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border-strong);
+            border: 2px solid var(--bg-surface);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-step-item.active .timeline-step-node {
+            background: var(--accent);
+            box-shadow: 0 0 8px var(--accent-glow);
+            transform: scale(1.2);
+        }
+        
+        .timeline-step-item.completed .timeline-step-node {
+            background: var(--accent-emerald);
+            box-shadow: 0 0 8px rgba(16,185,129,0.3);
+        }
+
+        .timeline-step-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .timeline-step-name {
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+        
+        .timeline-step-item.active .timeline-step-name {
+            color: var(--text-primary);
+        }
+
+        .timeline-step-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .timeline-step-time {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: var(--bg-elevated);
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+        
+        .timeline-step-item.active .timeline-step-time {
+            color: var(--accent);
+            background: var(--accent-glow);
+            border-color: var(--border-strong);
+        }
+
+        /* Compliance badging */
+        .compliance-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            border-top: 1px solid var(--border-strong);
+            padding-top: 1.5rem;
+        }
+
+        .compliance-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 6px;
+        }
+
+        .compliance-badge i {
+            color: var(--accent-emerald);
+        }
+
+        /* CTA button details */
+        .calc-cta-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: var(--gradient-accent);
+            color: #fff !important;
+            border: none;
+            border-radius: 12px;
+            padding: 18px 24px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 10px 20px var(--accent-glow);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .calc-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px var(--accent-glow);
+        }
+        
+        .calc-cta-btn:active {
+            transform: translateY(0);
+        }
+
+        .calc-cta-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            transition: transform 0.3s ease;
+        }
+
+        .calc-cta-btn:hover svg {
+            transform: translateX(4px);
+        }
     </style>
 </head>
 
@@ -8211,6 +8755,183 @@ Enhanced Color System – "Luminous Precision"
         </div>
     </section>
 
+    <!-- INTERACTIVE SLA & CAPACITY CALCULATOR -->
+    <section id="calculator-section" class="calculator-section">
+        <div class="calc-container">
+            <div class="calc-header scroll-reveal">
+                <span class="section-overline">Operations Engine</span>
+                <h2 class="section-title">Enterprise SLA &amp; Capacity Planner</h2>
+                <p class="main-hero-subtitle" style="margin: 1rem auto 0; max-width: 600px;">
+                    Simulate resource allocation, timeline milestones, and compliance frameworks for your custom project scale.
+                </p>
+            </div>
+
+            <div class="calc-grid scroll-reveal">
+                <!-- Controls Card -->
+                <div class="calc-card calc-controls-card">
+                    <div>
+                        <h3 class="calc-card-title">
+                            <i class="fa-solid fa-sliders"></i> 1. Configure Project
+                        </h3>
+                        <p class="calc-card-subtitle">Select the required service category and adjust scale parameters.</p>
+                    </div>
+
+                    <!-- Service Category Tiles -->
+                    <div class="calc-control-group">
+                        <span class="calc-control-label">Service Category</span>
+                        <div class="service-selector-grid">
+                            <div class="service-tile active" data-service="translation" tabindex="0" role="button">
+                                <i class="fa-solid fa-language service-tile-icon"></i>
+                                <span class="service-tile-title">Translation</span>
+                                <span class="service-tile-metric">Words</span>
+                            </div>
+                            <div class="service-tile" data-service="subtitling" tabindex="0" role="button">
+                                <i class="fa-solid fa-closed-captioning service-tile-icon"></i>
+                                <span class="service-tile-title">Subtitling</span>
+                                <span class="service-tile-metric">Minutes</span>
+                            </div>
+                            <div class="service-tile" data-service="annotation" tabindex="0" role="button">
+                                <i class="fa-solid fa-database service-tile-icon"></i>
+                                <span class="service-tile-title">AI Annotation</span>
+                                <span class="service-tile-metric">Tasks</span>
+                            </div>
+                            <div class="service-tile" data-service="bpo" tabindex="0" role="button">
+                                <i class="fa-solid fa-headset service-tile-icon"></i>
+                                <span class="service-tile-title">BPO Support</span>
+                                <span class="service-tile-metric">Inquiries</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Volume Slider -->
+                    <div class="calc-control-group">
+                        <div class="calc-control-header">
+                            <span class="calc-control-label" id="calc-volume-label">Project Volume</span>
+                            <span class="calc-value-badge" id="calc-volume-display">10,000 Words</span>
+                        </div>
+                        <div class="slider-wrapper">
+                            <input type="range" class="calc-slider" id="calc-volume-slider" min="10000" max="1000000" step="10000" value="150000" aria-valuemin="10000" aria-valuemax="1000000" aria-valuenow="150000" aria-label="Project Volume Slider">
+                            <div class="calc-slider-labels">
+                                <span id="calc-slider-min">10K</span>
+                                <span id="calc-slider-mid">500K</span>
+                                <span id="calc-slider-max">1M</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SLA Turnaround Speed Switches -->
+                    <div class="calc-control-group">
+                        <span class="calc-control-label">Required SLA Speed</span>
+                        <div class="sla-switch-grid">
+                            <div class="sla-btn" data-sla="6" tabindex="0" role="button">
+                                <span class="sla-time">6h</span>
+                                <span class="sla-label">Express</span>
+                                <span class="sla-tag">Max Priority</span>
+                            </div>
+                            <div class="sla-btn active" data-sla="12" tabindex="0" role="button">
+                                <span class="sla-time">12h</span>
+                                <span class="sla-label">Urgent</span>
+                                <span class="sla-tag">Dual Shift</span>
+                            </div>
+                            <div class="sla-btn" data-sla="24" tabindex="0" role="button">
+                                <span class="sla-time">24h</span>
+                                <span class="sla-label">Fast</span>
+                                <span class="sla-tag">Next-Day</span>
+                            </div>
+                            <div class="sla-btn" data-sla="48" tabindex="0" role="button">
+                                <span class="sla-time">48h+</span>
+                                <span class="sla-label">Standard</span>
+                                <span class="sla-tag">Standard</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard (Outputs) Card -->
+                <div class="calc-card calc-dashboard-card">
+                    <div>
+                        <h3 class="calc-card-title">
+                            <i class="fa-solid fa-chart-line"></i> 2. Operations Dashboard
+                        </h3>
+                        <p class="calc-card-subtitle">Real-time resource allocation and automated workflow audit.</p>
+                    </div>
+
+                    <!-- Metrics Stats -->
+                    <div class="dashboard-stat-row">
+                        <div class="stat-block">
+                            <span class="stat-label">Linguist Allocation</span>
+                            <div class="stat-value" id="stat-linguists">0 <span class="stat-unit">Native Experts</span></div>
+                        </div>
+                        <div class="stat-block">
+                            <span class="stat-label">QC Specialists</span>
+                            <div class="stat-value" id="stat-qc">0 <span class="stat-unit">Reviewers</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Visual Timeline -->
+                    <div class="timeline-container">
+                        <span class="timeline-title">Project Milestones (Calculated Timeline)</span>
+                        <div class="timeline-steps">
+                            <div class="timeline-step-item completed">
+                                <div class="timeline-step-node"></div>
+                                <div class="timeline-step-info">
+                                    <span class="timeline-step-name">Secure Ingestion</span>
+                                    <span class="timeline-step-desc">AES-256 validation &amp; NDA safe logging</span>
+                                </div>
+                                <span class="timeline-step-time" id="step-time-1">--:--</span>
+                            </div>
+                            <div class="timeline-step-item active">
+                                <div class="timeline-step-node"></div>
+                                <div class="timeline-step-info">
+                                    <span class="timeline-step-name">Linguistic Translation</span>
+                                    <span class="timeline-step-desc">Native subject experts translation process</span>
+                                </div>
+                                <span class="timeline-step-time" id="step-time-2">--:--</span>
+                            </div>
+                            <div class="timeline-step-item">
+                                <div class="timeline-step-node"></div>
+                                <div class="timeline-step-info">
+                                    <span class="timeline-step-name">Peer Review &amp; QA Edit</span>
+                                    <span class="timeline-step-desc">Bilingual comparative review, spelling &amp; context checks</span>
+                                </div>
+                                <span class="timeline-step-time" id="step-time-3">--:--</span>
+                            </div>
+                            <div class="timeline-step-item">
+                                <div class="timeline-step-node"></div>
+                                <div class="timeline-step-info">
+                                    <span class="timeline-step-name">Final Verification &amp; Delivery</span>
+                                    <span class="timeline-step-desc">Document structural check &amp; secure delivery release</span>
+                                </div>
+                                <span class="timeline-step-time" id="step-time-4">--:--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Compliance Badges -->
+                    <div class="compliance-row">
+                        <div class="compliance-badge">
+                            <i class="fa-solid fa-circle-check"></i> ISO 9001 Quality
+                        </div>
+                        <div class="compliance-badge">
+                            <i class="fa-solid fa-shield-halved"></i> ISO 27001 Secure
+                        </div>
+                        <div class="compliance-badge">
+                            <i class="fa-solid fa-lock"></i> GDPR Data Safe
+                        </div>
+                    </div>
+
+                    <!-- CTA Pre-fill Button -->
+                    <button id="calc-prefill-cta" class="calc-cta-btn" aria-label="Pre-fill Request Quote with this Configuration">
+                        <span>Pre-fill Quote with this Configuration</span>
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="m11.293 17.293 1.414 1.414 6-6-6-6-1.414 1.414 3.586 3.586h-10.879v2h10.879z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- COMMAND FOOTER -->
     <section id="command-footer">
         <div class="footer-container">
@@ -9688,6 +10409,276 @@ Enhanced Color System – "Luminous Precision"
                     }
                 });
 
+            })();
+
+            // ============================================================
+            // 22. ENTERPRISE SLA & CAPACITY CALCULATOR LOGIC
+            // ============================================================
+            (function() {
+                const serviceTiles = document.querySelectorAll('.service-tile');
+                const volumeSlider = document.getElementById('calc-volume-slider');
+                const volumeDisplay = document.getElementById('calc-volume-display');
+                const volumeLabel = document.getElementById('calc-volume-label');
+                const sliderMinLabel = document.getElementById('calc-slider-min');
+                const sliderMidLabel = document.getElementById('calc-slider-mid');
+                const sliderMaxLabel = document.getElementById('calc-slider-max');
+                
+                const slaBtns = document.querySelectorAll('.sla-btn');
+                
+                const statLinguists = document.getElementById('stat-linguists');
+                const statQc = document.getElementById('stat-qc');
+                
+                const stepTime1 = document.getElementById('step-time-1');
+                const stepTime2 = document.getElementById('step-time-2');
+                const stepTime3 = document.getElementById('step-time-3');
+                const stepTime4 = document.getElementById('step-time-4');
+                
+                const stepItems = document.querySelectorAll('.timeline-step-item');
+                const ctaPrefill = document.getElementById('calc-prefill-cta');
+                
+                // State
+                let currentService = 'translation';
+                let currentVolume = 150000;
+                let currentSla = 12; // hours
+                
+                // Config constants
+                const configs = {
+                    translation: {
+                        label: 'Project Volume (Words)',
+                        min: 10000,
+                        max: 1000000,
+                        step: 10000,
+                        defaultValue: 150000,
+                        minLabel: '10K',
+                        midLabel: '500K',
+                        maxLabel: '1M',
+                        unit: 'Words',
+                        resourceMultiplier: 2000 // words per day per translator
+                    },
+                    subtitling: {
+                        label: 'Video Duration (Minutes)',
+                        min: 100,
+                        max: 10000,
+                        step: 100,
+                        defaultValue: 1500,
+                        minLabel: '100m',
+                        midLabel: '5K m',
+                        maxLabel: '10K m',
+                        unit: 'Minutes',
+                        resourceMultiplier: 120 // minutes per day per translator
+                    },
+                    annotation: {
+                        label: 'AI Dataset Scale (Tasks)',
+                        min: 5000,
+                        max: 500000,
+                        step: 5000,
+                        defaultValue: 75000,
+                        minLabel: '5K',
+                        midLabel: '250K',
+                        maxLabel: '500K',
+                        unit: 'Tasks',
+                        resourceMultiplier: 4000 // tasks per day per annotator
+                    },
+                    bpo: {
+                        label: 'Estimated Weekly Inquiries',
+                        min: 1000,
+                        max: 100000,
+                        step: 1000,
+                        defaultValue: 15000,
+                        minLabel: '1K',
+                        midLabel: '50K',
+                        maxLabel: '100K',
+                        unit: 'Inquiries',
+                        resourceMultiplier: 300 // inquiries per day per agent
+                    }
+                };
+
+                // Initialize service selection click handlers
+                serviceTiles.forEach(tile => {
+                    tile.addEventListener('click', () => {
+                        serviceTiles.forEach(t => t.classList.remove('active'));
+                        tile.classList.add('active');
+                        currentService = tile.getAttribute('data-service');
+                        
+                        // Update configurations
+                        const cfg = configs[currentService];
+                        volumeLabel.textContent = cfg.label;
+                        volumeSlider.min = cfg.min;
+                        volumeSlider.max = cfg.max;
+                        volumeSlider.step = cfg.step;
+                        volumeSlider.value = cfg.defaultValue;
+                        currentVolume = cfg.defaultValue;
+                        
+                        sliderMinLabel.textContent = cfg.minLabel;
+                        sliderMidLabel.textContent = cfg.midLabel;
+                        sliderMaxLabel.textContent = cfg.maxLabel;
+
+                        volumeSlider.setAttribute('aria-valuemin', cfg.min);
+                        volumeSlider.setAttribute('aria-valuemax', cfg.max);
+                        volumeSlider.setAttribute('aria-valuenow', cfg.defaultValue);
+                        
+                        updateCalculations();
+                    });
+
+                    // A11y Enter/Space support
+                    tile.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            tile.click();
+                        }
+                    });
+                });
+
+                // Slider handler
+                if (volumeSlider) {
+                    volumeSlider.addEventListener('input', (e) => {
+                        currentVolume = parseInt(e.target.value);
+                        volumeSlider.setAttribute('aria-valuenow', currentVolume);
+                        updateCalculations();
+                    });
+                }
+
+                // SLA speed buttons
+                slaBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        slaBtns.forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        currentSla = parseInt(btn.getAttribute('data-sla'));
+                        updateCalculations();
+                    });
+
+                    // A11y
+                    btn.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            btn.click();
+                        }
+                    });
+                });
+
+                // Count-up helper function for clean number transitions
+                function animateValue(obj, start, end, duration, suffix = '') {
+                    if (!obj) return;
+                    let startTimestamp = null;
+                    const step = (timestamp) => {
+                        if (!startTimestamp) startTimestamp = timestamp;
+                        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                        const currentVal = Math.floor(progress * (end - start) + start);
+                        obj.innerHTML = currentVal.toLocaleString() + suffix;
+                        if (progress < 1) {
+                            window.requestAnimationFrame(step);
+                        } else {
+                            obj.innerHTML = end.toLocaleString() + suffix;
+                        }
+                    };
+                    window.requestAnimationFrame(step);
+                }
+
+                let lastLinguists = 0;
+                let lastQc = 0;
+
+                // Core logic update
+                function updateCalculations() {
+                    const cfg = configs[currentService];
+                    
+                    // Display volume format
+                    volumeDisplay.textContent = currentVolume.toLocaleString() + ' ' + cfg.unit;
+                    
+                    // Capacity formula: Resource count
+                    // Target rate per hour needed to complete project = volume / SLA_hours
+                    // Active resource requirement = (volume / SLA_hours) * 24 / daily_output_per_resource
+                    // Let's multiply by a speed margin of 1.15 to ensure SLA safety buffer
+                    const dailyTarget = (currentVolume / currentSla) * 24;
+                    let linguistsNeeded = Math.ceil((dailyTarget / cfg.resourceMultiplier) * 1.15);
+                    
+                    // Minimum resource thresholds
+                    if (linguistsNeeded < 1) linguistsNeeded = 1;
+                    
+                    // QC resource requirement is proportional to scale and timeline pressure
+                    // Urgent SLAs require more concurrent editors
+                    let qcNeeded = Math.ceil(linguistsNeeded * (currentSla <= 12 ? 0.4 : 0.25));
+                    if (qcNeeded < 1) qcNeeded = 1;
+
+                    // Animate statistical counters
+                    animateValue(statLinguists, lastLinguists, linguistsNeeded, 400, ` <span class="stat-unit">Native Experts</span>`);
+                    animateValue(statQc, lastQc, qcNeeded, 400, ` <span class="stat-unit">Reviewers</span>`);
+                    
+                    lastLinguists = linguistsNeeded;
+                    lastQc = qcNeeded;
+
+                    // Compute precise timeline milestones
+                    const now = new Date();
+                    const ingestTime = new Date(now.getTime() + 10 * 60 * 1000); // + 10 mins
+                    const transDuration = currentSla * 0.5 * 60 * 60 * 1000; // 50% SLA
+                    const translationTime = new Date(now.getTime() + transDuration);
+                    
+                    const qaDuration = currentSla * 0.85 * 60 * 60 * 1000; // 85% SLA
+                    const reviewTime = new Date(now.getTime() + qaDuration);
+                    
+                    const deliveryTime = new Date(now.getTime() + currentSla * 60 * 60 * 1000); // 100% SLA
+
+                    // Format Time helper
+                    function formatDateTime(dt) {
+                        return dt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + ' (' + dt.toLocaleDateString([], { month: 'short', day: 'numeric' }) + ')';
+                    }
+
+                    stepTime1.textContent = formatDateTime(ingestTime);
+                    stepTime2.textContent = formatDateTime(translationTime);
+                    stepTime3.textContent = formatDateTime(reviewTime);
+                    stepTime4.textContent = formatDateTime(deliveryTime);
+
+                    // Dynamic styling updates based on progression
+                    stepItems.forEach((item, index) => {
+                        item.classList.remove('completed', 'active');
+                        if (index === 0) {
+                            item.classList.add('completed');
+                        } else if (index === 1) {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+
+                // CTA form integration
+                if (ctaPrefill) {
+                    ctaPrefill.addEventListener('click', () => {
+                        const quoteForm = document.getElementById('quote-form');
+                        const fService = document.getElementById('f-service');
+                        const fDetails = document.getElementById('f-details');
+                        const fName = document.getElementById('f-name');
+                        
+                        if (quoteForm && fService && fDetails && fName) {
+                            // Set service select field
+                            fService.value = currentService;
+                            
+                            // Generate calculated configuration details text
+                            const cfg = configs[currentService];
+                            const deliveryDate = stepTime4.textContent;
+                            
+                            fDetails.value = `SLA Calculator Configuration:\n` +
+                                             `- Service Type: ${configs[currentService].label.split(' ')[0]} ${configs[currentService].label.includes('Volume') ? 'Translation' : ''}\n` +
+                                             `- Project Volume: ${currentVolume.toLocaleString()} ${cfg.unit}\n` +
+                                             `- Required SLA: ${currentSla} Hours (${currentSla === 6 ? 'Express' : currentSla === 12 ? 'Urgent' : currentSla === 24 ? 'Fast' : 'Standard'})\n` +
+                                             `- Target Delivery Time: ${deliveryDate}\n` +
+                                             `-----------------------------------------\n` +
+                                             `Please tell us about your project specifics / target languages here...`;
+                            
+                            // Adjust height of textarea to fit injected content
+                            fDetails.style.height = 'auto';
+                            fDetails.style.height = fDetails.scrollHeight + 'px';
+                            
+                            // Smooth scroll to form section
+                            document.getElementById('command-footer').scrollIntoView({ behavior: 'smooth' });
+                            
+                            // Focus target name input with slight delay to wait for scrolling
+                            setTimeout(() => {
+                                fName.focus();
+                            }, 800);
+                        }
+                    });
+                }
+
+                // Initial calculation run
+                updateCalculations();
             })();
 
         })();
