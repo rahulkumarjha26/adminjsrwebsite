@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+    <defs>
+        <linearGradient id="glowTeal" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#2d3748" stop-opacity="0.4" />
+            <stop offset="100%" stop-color="#1a202c" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="glowTeal2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#10b981" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#047857" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="glowIndigo" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#6366f1" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#4f46e5" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#10b981" />
+            <stop offset="100%" stop-color="#6366f1" />
+        </linearGradient>
+        <filter id="blur" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="30" />
+        </filter>
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- Deep Tech Background -->
+    <rect width="600" height="400" fill="#060713" />
+    
+    <!-- Grid -->
+    <g stroke="rgba(255,255,255,0.03)" stroke-width="1">
+        <line x1="100" y1="0" x2="100" y2="400" />
+        <line x1="200" y1="0" x2="200" y2="400" />
+        <line x1="300" y1="0" x2="300" y2="400" />
+        <line x1="400" y1="0" x2="400" y2="400" />
+        <line x1="500" y1="0" x2="500" y2="400" />
+        <line x1="0" y1="100" x2="600" y2="100" />
+        <line x1="0" y1="200" x2="600" y2="200" />
+        <line x1="0" y1="300" x2="600" y2="300" />
+    </g>
+
+    <!-- Glowing Background Blobs -->
+    <circle cx="180" cy="220" r="110" fill="url(#glowTeal2)" filter="url(#blur)" />
+    <circle cx="400" cy="180" r="100" fill="url(#glowIndigo)" filter="url(#blur)" />
+
+    <!-- Overlapping Code / Review Windows (Glassmorphism) -->
+    <!-- Window 1 (Original Content) -->
+    <g transform="translate(130, 90)">
+        <rect x="0" y="0" width="220" height="180" rx="12" fill="rgba(15, 17, 34, 0.7)" stroke="rgba(255,255,255,0.05)" stroke-width="1.5" />
+        <!-- Window title bar -->
+        <rect x="0" y="0" width="220" height="25" rx="12" fill="rgba(255,255,255,0.03)" />
+        <circle cx="15" cy="12" r="3.5" fill="#ef4444" />
+        <circle cx="27" cy="12" r="3.5" fill="#f59e0b" />
+        <circle cx="39" cy="12" r="3.5" fill="#10b981" />
+        
+        <!-- Document Text lines (Original) -->
+        <rect x="20" y="45" width="100" height="6" rx="2" fill="#6366f1" opacity="0.6" />
+        <rect x="20" y="65" width="160" height="4" rx="2" fill="rgba(255,255,255,0.15)" />
+        <rect x="20" y="80" width="180" height="4" rx="2" fill="rgba(255,255,255,0.15)" />
+        <rect x="20" y="95" width="130" height="4" rx="2" fill="rgba(255,255,255,0.15)" />
+        
+        <!-- Highlighted Edit section -->
+        <rect x="15" y="115" width="190" height="45" rx="6" fill="rgba(239, 68, 68, 0.08)" stroke="rgba(239, 68, 68, 0.2)" stroke-width="1" />
+        <rect x="25" y="125" width="150" height="4" rx="2" fill="#ef4444" opacity="0.8" />
+        <rect x="25" y="140" width="120" height="4" rx="2" fill="#ef4444" opacity="0.8" />
+    </g>
+
+    <!-- Window 2 (Peer Review / Correction Overlay) -->
+    <g transform="translate(260, 140)" filter="url(#glow)">
+        <rect x="0" y="0" width="220" height="180" rx="12" fill="rgba(20, 24, 45, 0.85)" stroke="url(#lineGrad)" stroke-width="1.5" />
+        <!-- Window title bar -->
+        <rect x="0" y="0" width="220" height="25" rx="12" fill="rgba(255,255,255,0.03)" />
+        <circle cx="15" cy="12" r="3.5" fill="rgba(255,255,255,0.2)" />
+        <circle cx="27" cy="12" r="3.5" fill="rgba(255,255,255,0.2)" />
+        <circle cx="39" cy="12" r="3.5" fill="rgba(255,255,255,0.2)" />
+        
+        <!-- Reviewer tag -->
+        <rect x="140" y="7" width="65" height="12" rx="4" fill="rgba(16, 185, 129, 0.2)" />
+        <text x="172" y="16" fill="#10b981" font-family="'Manrope', sans-serif" font-size="8" font-weight="700" text-anchor="middle">PEER EDIT</text>
+
+        <!-- Correction Lines -->
+        <rect x="20" y="45" width="110" height="6" rx="2" fill="#10b981" opacity="0.8" />
+        
+        <!-- Detailed edits -->
+        <rect x="15" y="65" width="190" height="95" rx="6" fill="rgba(16, 185, 129, 0.05)" stroke="rgba(16, 185, 129, 0.15)" stroke-width="1" />
+        <rect x="25" y="78" width="160" height="4" rx="2" fill="#10b981" opacity="0.9" />
+        <rect x="25" y="93" width="150" height="4" rx="2" fill="rgba(255,255,255,0.4)" />
+        <rect x="25" y="108" width="170" height="4" rx="2" fill="rgba(255,255,255,0.4)" />
+        <rect x="25" y="123" width="110" height="4" rx="2" fill="#10b981" opacity="0.9" />
+        <path d="M25 143 l4 4 l8 -8" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" />
+        <text x="43" y="147" fill="#10b981" font-family="'Manrope', sans-serif" font-size="9" font-weight="700">Correction Approved</text>
+    </g>
+
+    <!-- Interactive Linking Arrows -->
+    <path d="M 230 290 Q 250 330 280 300" fill="none" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3 3" />
+    <path d="M 276 297 L 282 301 L 280 294" fill="none" stroke="#10b981" stroke-width="1.5" />
+</svg>

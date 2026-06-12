@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+    <defs>
+        <linearGradient id="glowRose" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f43f5e" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#be123c" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="glowViolet" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#6d28d9" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f43f5e" />
+            <stop offset="50%" stop-color="#8b5cf6" />
+            <stop offset="100%" stop-color="#6d28d9" />
+        </linearGradient>
+        <filter id="blur" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="30" />
+        </filter>
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- Deep Tech Background -->
+    <rect width="600" height="400" fill="#060713" />
+    
+    <!-- Grid -->
+    <g stroke="rgba(255,255,255,0.03)" stroke-width="1">
+        <line x1="100" y1="0" x2="100" y2="400" />
+        <line x1="200" y1="0" x2="200" y2="400" />
+        <line x1="300" y1="0" x2="300" y2="400" />
+        <line x1="400" y1="0" x2="400" y2="400" />
+        <line x1="500" y1="0" x2="500" y2="400" />
+        <line x1="0" y1="100" x2="600" y2="100" />
+        <line x1="0" y1="200" x2="600" y2="200" />
+        <line x1="0" y1="300" x2="600" y2="300" />
+    </g>
+
+    <!-- Glowing Background Blobs -->
+    <circle cx="220" cy="180" r="100" fill="url(#glowRose)" filter="url(#blur)" />
+    <circle cx="380" cy="220" r="95" fill="url(#glowViolet)" filter="url(#blur)" />
+
+    <!-- Core UI Shield (QA Symbol) -->
+    <g transform="translate(140, 100)">
+        <rect x="0" y="0" width="320" height="200" rx="16" fill="rgba(15, 17, 34, 0.6)" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" />
+        <rect x="0" y="0" width="320" height="200" rx="16" fill="none" stroke="url(#shieldGrad)" stroke-width="1" opacity="0.4" />
+        
+        <!-- Checklist Board -->
+        <g transform="translate(30, 30)">
+            <text x="0" y="15" fill="#f43f5e" font-family="'Manrope', sans-serif" font-size="14" font-weight="700" letter-spacing="0.05em">QA AUDIT REPORT</text>
+            
+            <g transform="translate(0, 35)">
+                <circle cx="8" cy="8" r="7" fill="rgba(244, 63, 94, 0.1)" stroke="#f43f5e" stroke-width="1" />
+                <path d="M5 8 l2 2 l4 -4" fill="none" stroke="#f43f5e" stroke-width="1.5" stroke-linecap="round" />
+                <rect x="25" y="6" width="100" height="4" rx="2" fill="rgba(255,255,255,0.5)" />
+            </g>
+            <g transform="translate(0, 65)">
+                <circle cx="8" cy="8" r="7" fill="rgba(244, 63, 94, 0.1)" stroke="#f43f5e" stroke-width="1" />
+                <path d="M5 8 l2 2 l4 -4" fill="none" stroke="#f43f5e" stroke-width="1.5" stroke-linecap="round" />
+                <rect x="25" y="6" width="120" height="4" rx="2" fill="rgba(255,255,255,0.5)" />
+            </g>
+            <g transform="translate(0, 95)">
+                <circle cx="8" cy="8" r="7" fill="rgba(244, 63, 94, 0.1)" stroke="#f43f5e" stroke-width="1" />
+                <path d="M5 8 l2 2 l4 -4" fill="none" stroke="#f43f5e" stroke-width="1.5" stroke-linecap="round" />
+                <rect x="25" y="6" width="80" height="4" rx="2" fill="rgba(255,255,255,0.5)" />
+            </g>
+            <g transform="translate(0, 125)">
+                <circle cx="8" cy="8" r="7" fill="rgba(244, 63, 94, 0.1)" stroke="#f43f5e" stroke-width="1" />
+                <path d="M5 8 l2 2 l4 -4" fill="none" stroke="#f43f5e" stroke-width="1.5" stroke-linecap="round" />
+                <rect x="25" y="6" width="110" height="4" rx="2" fill="rgba(255,255,255,0.5)" />
+            </g>
+        </g>
+
+        <!-- Giant Quality Shield badge in the right corner -->
+        <g transform="translate(220, 50)" filter="url(#glow)">
+            <!-- Shield Outline -->
+            <path d="M 35 10 C 60 10 70 0 70 0 C 70 0 70 40 70 50 C 70 80 35 100 35 100 C 35 100 0 80 0 50 C 0 40 0 0 0 0 C 0 0 10 10 35 10 Z" 
+                  fill="url(#shieldGrad)" opacity="0.95" />
+            <!-- Inner Shield Details -->
+            <path d="M 35 15 C 55 15 63 7 63 7 C 63 7 63 38 63 46 C 63 72 35 90 35 90 C 35 90 7 72 7 46 C 7 38 7 7 7 7 C 7 7 15 15 35 15 Z" 
+                  fill="#0f1122" />
+                  
+            <!-- Glowing QA Check inside Shield -->
+            <path d="M 23 48 l 8 8 l 18 -18" fill="none" stroke="#f43f5e" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)" />
+        </g>
+    </g>
+
+    <!-- Decorative Tech Target Rings -->
+    <circle cx="360" cy="150" r="70" fill="none" stroke="rgba(244, 63, 94, 0.15)" stroke-width="1.5" stroke-dasharray="6 8" />
+</svg>
