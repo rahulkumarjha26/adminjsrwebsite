@@ -1454,7 +1454,8 @@ Enhanced Color System – "Luminous Precision"
             flex-direction: column;
             width: 100%;
             min-height: 100vh;
-            padding-top: 80px;
+            padding: 80px 1.5rem;
+            box-sizing: border-box;
         }
 
         @media (min-width: 1024px) {
@@ -1462,13 +1463,16 @@ Enhanced Color System – "Luminous Precision"
                 flex-direction: row;
                 align-items: center;
                 justify-content: space-between;
-                padding: 0 5vw;
+                padding: 120px 2rem;
+                max-width: 1300px;
+                margin: 0 auto;
+                gap: 5rem;
             }
         }
 
         .hero-left {
-            flex: 1;
-            padding: 2rem;
+            flex: 1.1;
+            padding: 1.5rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -1476,8 +1480,8 @@ Enhanced Color System – "Luminous Precision"
         }
 
         .hero-right {
-            flex: 0.8;
-            padding: 2rem;
+            flex: 0.9;
+            padding: 1.5rem;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -1486,12 +1490,22 @@ Enhanced Color System – "Luminous Precision"
             overflow: hidden;
         }
 
+        @media (max-width: 1023px) {
+            .hero-left,
+            .hero-right {
+                padding: 1rem 0;
+            }
+            .hero-right {
+                margin-top: 2.5rem;
+            }
+        }
+
         .hero-headline {
             font-family: var(--font-display);
             font-size: clamp(3rem, 6vw, 5.5rem);
             line-height: 1.1;
             color: var(--text-primary);
-            margin: 0 0 2rem 0;
+            margin: 0 0 1.75rem 0;
             font-weight: 300;
         }
 
@@ -1507,12 +1521,12 @@ Enhanced Color System – "Luminous Precision"
 
         .hero-subtitle {
             font-family: var(--font-display);
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             color: var(--text-secondary);
             font-style: italic;
-            margin-bottom: 2rem;
-            max-width: 400px;
-            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            max-width: 560px;
+            line-height: 1.6;
         }
 
         /* === DICTIONARY CARD (Warmer, richer) === */
@@ -6546,7 +6560,7 @@ Enhanced Color System – "Luminous Precision"
                     businesses and their audiences. We are a professional Localization, Translation, Annotation, and BPO
                     service provider based in India, trusted by enterprises across UK, Europe, USA, and Asia Pacific to
                     deliver world-class multilingual solutions.</p>
-                <p class="hero-subtitle" style="margin-top:1rem;">Our mission is to deliver exceptional linguistic and
+                <p class="hero-subtitle">Our mission is to deliver exceptional linguistic and
                     localization services that empower global businesses to communicate authentically across languages
                     and cultures — ensuring your message lands with the same impact everywhere it is heard.</p>
                 <div class="magnetic-el" data-strength="20">
