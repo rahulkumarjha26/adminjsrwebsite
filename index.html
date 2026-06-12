@@ -235,14 +235,91 @@ Enhanced Color System – "Luminous Precision"
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 2rem;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
+            gap: 1.5rem;
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
         }
 
         .page-loader.hidden {
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
+        }
+
+        /* Drifting Ambient Lights Inside Loader */
+        .loader-ambient {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 30% 40%, hsla(var(--hue-primary), 75%, 66%, 0.12), transparent 60%),
+                radial-gradient(ellipse 50% 60% at 70% 60%, hsla(var(--hue-warm), 92%, 50%, 0.08), transparent 60%),
+                radial-gradient(ellipse 40% 30% at 50% 30%, rgba(244, 63, 94, 0.06), transparent 50%);
+            z-index: 1;
+            pointer-events: none;
+            animation: drift 25s ease-in-out infinite alternate;
+        }
+
+        [data-theme="dark"] .loader-ambient {
+            background:
+                radial-gradient(ellipse 60% 50% at 30% 40%, hsla(var(--hue-primary), 89%, 74%, 0.15), transparent 60%),
+                radial-gradient(ellipse 50% 60% at 70% 60%, hsla(var(--hue-warm), 96%, 60%, 0.09), transparent 60%),
+                radial-gradient(ellipse 40% 30% at 50% 30%, rgba(244, 63, 94, 0.08), transparent 50%);
+        }
+
+        /* Typography for Loader */
+        .loader-header {
+            text-align: center;
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: loader-header-fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+            padding: 0 1.5rem;
+        }
+
+        .loader-title {
+            font-family: var(--font-display);
+            font-size: 2.75rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            background: linear-gradient(135deg, var(--text-primary) 30%, hsla(var(--text-primary-hsl), 0.6));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .loader-subtitle {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            letter-spacing: -0.015em;
+            max-width: 480px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        @keyframes loader-header-fade-in {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Restore default cursor during loading screen */
+        body.loading,
+        body.loading * {
+            cursor: auto !important;
+        }
+
+        body.loading .loader-enter-btn,
+        body.loading .loader-enter-btn * {
+            cursor: pointer !important;
+        }
+
+        body.loading .cursor-dot,
+        body.loading .cursor-ring {
+            opacity: 0 !important;
+            display: none !important;
         }
 
         .loader-inner {
@@ -297,6 +374,96 @@ Enhanced Color System – "Luminous Precision"
         @keyframes loader-fill {
             to {
                 width: 100%;
+            }
+        }
+
+        .page-loader svg {
+            max-width: 450px;
+            max-height: 340px;
+            width: 100%;
+            height: auto;
+            z-index: 5;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.08));
+        }
+
+        /* === LOADER ENTER BUTTON === */
+        .loader-enter-btn {
+            font-family: var(--font-display), sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 1rem 2.25rem;
+            border-radius: 9999px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: var(--shadow-card);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: loader-btn-fade-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards, loader-btn-pulse 2s infinite 1.8s;
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .loader-enter-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .loader-enter-btn:hover::before {
+            transform: translateX(100%);
+        }
+
+        .loader-enter-btn:hover {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -10px hsla(var(--hue-primary), 75%, 66%, 0.3);
+        }
+
+        .loader-enter-btn:active {
+            transform: translateY(1px);
+        }
+
+        .loader-enter-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            transition: transform 0.3s ease;
+        }
+
+        .loader-enter-btn:hover svg {
+            transform: translateX(4px);
+        }
+
+        @keyframes loader-btn-fade-in {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes loader-btn-pulse {
+            0% {
+                box-shadow: 0 0 0 0 hsla(var(--hue-primary), 75%, 66%, 0.3), var(--shadow-card);
+            }
+            70% {
+                box-shadow: 0 0 0 15px hsla(var(--hue-primary), 75%, 66%, 0), var(--shadow-card);
+            }
+            100% {
+                box-shadow: 0 0 0 0 hsla(var(--hue-primary), 75%, 66%, 0), var(--shadow-card);
             }
         }
 
@@ -370,6 +537,21 @@ Enhanced Color System – "Luminous Precision"
 
         .italic {
             font-style: italic;
+        }
+
+        /* === BRAND TYPOGRAPHY SYSTEM === */
+        .brand-typography {
+            font-family: var(--font-display), sans-serif !important;
+            font-style: italic !important;
+            font-weight: 800 !important;
+            letter-spacing: -0.03em !important;
+            text-transform: none !important;
+            background: var(--gradient-accent) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+            display: inline-block !important;
+            padding-right: 0.05em !important;
         }
 
         /* === AMBIENT LIGHT (More vibrant) === */
@@ -6569,6 +6751,11 @@ Enhanced Color System – "Luminous Precision"
 <body>
     <!-- Page Loader -->
     <div class="page-loader" id="page-loader">
+        <div class="loader-ambient"></div>
+        <div class="loader-header">
+            <h1 class="loader-title brand-typography">Admin JSR Consulting</h1>
+            <p class="loader-subtitle">Breaking Language Barriers. Building Global Connections.</p>
+        </div>
         <svg viewBox="0 0 800 600" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <style>
@@ -6902,6 +7089,12 @@ Enhanced Color System – "Luminous Precision"
                 </g>
             </g>
         </svg>
+        <button id="enter-btn" class="loader-enter-btn" aria-label="Enter Website">
+            <span>Enter Website</span>
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </button>
     </div>
 
     <!-- Scroll Progress -->
@@ -6921,7 +7114,7 @@ Enhanced Color System – "Luminous Precision"
     <nav class="main-nav" id="main-nav">
         <a href="#" class="brand-mark">
             <img src="logo.png" alt="Admin JSR Logo" class="brand-logo" loading="eager" fetchpriority="high">
-            <span>Admin JSR Consulting</span>
+            <span class="brand-typography">Admin JSR Consulting</span>
         </a>
         <ul class="nav-links">
             <li><a href="#manifesto-section" class="nav-link">About</a></li>
@@ -7101,7 +7294,7 @@ Enhanced Color System – "Luminous Precision"
         style="position:relative; background-color:var(--bg-primary); transition:background-color 0.8s;">
         <div class="hero-split-layout">
             <div class="hero-left scroll-reveal">
-                <h2 class="hero-headline">About<br><em>Admin JSR</em><br>Consulting</h2>
+                <h2 class="hero-headline">About<br><span class="brand-typography">Admin JSR<br>Consulting</span></h2>
                 <p class="hero-subtitle">Since 2013, Admin JSR Consulting has been bridging the gap between global
                     businesses and their audiences. We are a professional Localization, Translation, Annotation, and BPO
                     service provider based in India, trusted by enterprises across UK, Europe, USA, and Asia Pacific to
@@ -9005,7 +9198,7 @@ Enhanced Color System – "Luminous Precision"
             </div>
             <div class="info-grid" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 4rem;">
                 <div class="info-col"><span class="col-head">Contact</span>
-                    <p class="address-blk"><strong>Admin JSR Consulting</strong><br>India</p>
+                    <p class="address-blk"><strong class="brand-typography">Admin JSR Consulting</strong><br>India</p>
                     <p class="address-blk" style="margin-top: 1rem; line-height: 1.8;"><span
                             style="color: var(--text-muted);">Email:</span> info@adminjsrconsulting.com<br><span
                             style="color: var(--text-muted);">Phone:</span> <a href="https://wa.me/917258953191"
@@ -9029,7 +9222,7 @@ Enhanced Color System – "Luminous Precision"
                         class="info-link">Request Quote</a><a href="#" class="info-link">Careers</a><a href="#"
                         class="info-link">Client Portal Login</a></div>
             </div>
-            <div class="copyright"><span>© 2026 ADMIN JSR CONSULTING</span></div>
+            <div class="copyright"><span>© 2026 <span class="brand-typography" style="font-size: 0.95rem; font-weight: 800;">Admin JSR Consulting</span></span></div>
         </div>
     </section>
 
@@ -9233,6 +9426,61 @@ Enhanced Color System – "Luminous Precision"
     <script>
         (function () {
             'use strict';
+
+            // 0. AMBIENT CHIME SOUND SYNTHESIZER
+            function playCelestialChime() {
+                try {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    if (!AudioContext) return;
+
+                    const ctx = new AudioContext();
+                    const now = ctx.currentTime;
+
+                    // A beautiful, open C-Major 9 pentatonic scale (Frequencies in Hz)
+                    // C4 (261.63), E4 (329.63), G4 (392.00), B4 (493.88), D5 (587.33), G5 (783.99)
+                    const pentatonicScale = [261.63, 329.63, 392.00, 493.88, 587.33, 783.99];
+
+                    // Master gain node to keep the volume soft and warm
+                    const masterGain = ctx.createGain();
+                    masterGain.gain.setValueAtTime(0.08, now); // Very soft, non-intrusive volume (8%)
+                    masterGain.connect(ctx.destination);
+
+                    // Cascade notes with a 120ms delay between each to create a sweeping effect
+                    pentatonicScale.forEach((freq, index) => {
+                        const noteTime = now + (index * 0.12);
+
+                        // Primary oscillator: Sine wave for pure, round warmth
+                        const osc1 = ctx.createOscillator();
+                        osc1.type = 'sine';
+                        osc1.frequency.setValueAtTime(freq, noteTime);
+
+                        // Secondary oscillator: Triangle wave at double frequency for a gentle bell sparkle
+                        const osc2 = ctx.createOscillator();
+                        osc2.type = 'triangle';
+                        osc2.frequency.setValueAtTime(freq * 2, noteTime);
+
+                        // Individual envelope gain node
+                        const gainNode = ctx.createGain();
+                        gainNode.gain.setValueAtTime(0, noteTime);
+
+                        // Soft attack (prevents popping clicks)
+                        gainNode.gain.linearRampToValueAtTime(0.20, noteTime + 0.08);
+                        // Long, ambient decay
+                        gainNode.gain.exponentialRampToValueAtTime(0.001, noteTime + 2.0);
+
+                        osc1.connect(gainNode);
+                        osc2.connect(gainNode);
+                        gainNode.connect(masterGain);
+
+                        osc1.start(noteTime);
+                        osc2.start(noteTime);
+                        osc1.stop(noteTime + 2.5);
+                        osc2.stop(noteTime + 2.5);
+                    });
+                } catch (e) {
+                    console.warn('Web Audio API is not supported or was blocked:', e);
+                }
+            }
 
             const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
@@ -9680,29 +9928,23 @@ Enhanced Color System – "Luminous Precision"
 
             // 13. PAGE LOADER
             const pageLoader = document.getElementById('page-loader');
+            const enterBtn = document.getElementById('enter-btn');
             if (pageLoader) {
                 document.body.classList.add('loading');
-                const minDisplay = 600;
-                const maxDisplay = 1800;
-                const start = Date.now();
                 let loaded = false;
 
                 function hideLoader() {
                     if (loaded) return;
                     loaded = true;
+                    playCelestialChime();
                     pageLoader.classList.add('hidden');
                     document.body.classList.remove('loading');
                     document.body.classList.add('loaded');
                 }
 
-                window.addEventListener('load', () => {
-                    const elapsed = Date.now() - start;
-                    const remaining = Math.max(0, minDisplay - elapsed);
-                    setTimeout(hideLoader, remaining);
-                });
-
-                // Fallback / maximum timeout of 1800ms
-                setTimeout(hideLoader, maxDisplay);
+                if (enterBtn) {
+                    enterBtn.addEventListener('click', hideLoader);
+                }
             }
 
             // 14. SCROLL PROGRESS BAR
