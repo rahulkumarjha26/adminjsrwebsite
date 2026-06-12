@@ -8633,11 +8633,11 @@ Enhanced Color System – "Luminous Precision"
                 });
             }
 
-            // 5. SCROLL-REVEAL OBSERVER
-            const revealObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-            document.querySelectorAll('.scroll-reveal, .method-step').forEach(el => revealObserver.observe(el));
+             // 5. SCROLL-REVEAL OBSERVER
+             const revealObserver = new IntersectionObserver((entries) => {
+                 entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+             }, { threshold: 0.02, rootMargin: '0px 0px -40px 0px' });
+             document.querySelectorAll('.scroll-reveal, .method-step').forEach(el => revealObserver.observe(el));
 
             // 6. PROVENANCE GALLERY
             const rows = document.querySelectorAll('.project-row');
